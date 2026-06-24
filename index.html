@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inteligência Artificial - O Futuro é Agora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--bg:#050816;
+--bg2:#0A0F1E;
+--card:rgba(255,255,255,.05);
+--cyan:#00D4FF;
+--purple:#8B5CF6;
+--white:#F8FAFF;
+--muted:#9BA7C7;
+--border:rgba(255,255,255,.08);
+
+--gradient:
+linear-gradient(
+135deg,
+#00D4FF,
+#8B5CF6
+);
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--white);
+overflow-x:hidden;
+line-height:1.7;
+}
+
+/* Fundo futurista */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+
+background:
+radial-gradient(circle at 10% 20%,
+rgba(0,212,255,.15),
+transparent 35%),
+
+radial-gradient(circle at 80% 80%,
+rgba(139,92,246,.15),
+transparent 35%);
+
+z-index:-1;
+}
+
+/* Barra superior */
+
+#progress{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+width:0%;
+background:var(--gradient);
+z-index:9999;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+
+padding:18px 50px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(5,8,22,.8);
+backdrop-filter:blur(15px);
+
+border-bottom:1px solid var(--border);
+
+z-index:999;
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-weight:900;
+font-size:1.2rem;
+
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.menu{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.menu a{
+color:var(--muted);
+text-decoration:none;
+transition:.3s;
+}
+
+.menu a:hover{
+color:var(--cyan);
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-box{
+
+max-width:900px;
+
+padding:60px;
+
+background:rgba(255,255,255,.04);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:35px;
+
+box-shadow:
+0 0 50px rgba(0,212,255,.15);
+}
+
+.hero small{
+color:var(--cyan);
+letter-spacing:4px;
+text-transform:uppercase;
+}
+
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:clamp(3rem,8vw,6rem);
+line-height:1.1;
+margin:20px 0;
+}
+
+.hero h1 span{
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:1.1rem;
+color:var(--muted);
+max-width:700px;
+margin:auto;
+}
+
+.buttons{
+margin-top:35px;
+
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 35px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.primary{
+background:var(--gradient);
+color:white;
+}
+
+.secondary{
+border:1px solid var(--border);
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+}
+
+/* Seções */
+
+section{
+padding:100px 8%;
+max-width:1300px;
+margin:auto;
+}
+
+.section-tag{
+color:var(--cyan);
+letter-spacing:4px;
+text-transform:uppercase;
+font-size:.8rem;
+margin-bottom:10px;
+}
+
+h2{
+font-family:'Orbitron',sans-serif;
+font-size:clamp(2rem,5vw,3rem);
+margin-bottom:20px;
+}
+
+.lead{
+color:var(--muted);
+max-width:800px;
+margin-bottom:40px;
+}
+
+/* Cards */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:var(--card);
+padding:30px;
+border-radius:25px;
+border:1px solid var(--border);
+
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--cyan);
+
+box-shadow:
+0 0 35px rgba(0,212,255,.2);
+}
+
+.card span{
+font-size:2rem;
+display:block;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:var(--muted);
+}
+
+/* Responsivo */
+
+@media(max-width:768px){
+
+nav{
+padding:15px 20px;
+}
+
+.menu{
+display:none;
+}
+
+.hero-box{
+padding:35px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="progress"></div>
+
+<nav>
+
+<div class="logo">
+IA FUTURO
+</div>
+
+<ul class="menu">
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#funciona">Como Funciona</a></li>
+<li><a href="#beneficios">Benefícios</a></li>
+<li><a href="#curiosidades">Curiosidades</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-box">
+
+<small>
+Tecnologia • Inovação • Futuro
+</small>
+
+<h1>
+Inteligência
+<span>Artificial</span>
+</h1>
+
+<p>
+A tecnologia que está transformando o mundo,
+criando novas oportunidades e redefinindo o futuro
+da humanidade.
+</p>
+
+<div class="buttons">
+
+<a href="#sobre" class="btn primary">
+Explorar
+</a>
+
+<a href="#beneficios" class="btn secondary">
+Benefícios
+</a>
+
+</div>
+
+</div>
+
+</section>
+<!-- =========================
+SOBRE A IA
+========================= -->
+
+<section id="sobre">
+
+    <p class="section-tag">
+    01 • INTRODUÇÃO
+    </p>
+    
+    <h2>O Que é Inteligência Artificial?</h2>
+    
+    <p class="lead">
+    A Inteligência Artificial (IA) é uma área da computação que desenvolve sistemas capazes de aprender, analisar informações e tomar decisões de forma semelhante aos seres humanos.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>🧠</span>
+    <h3>Aprendizado</h3>
+    <p>
+    A IA aprende através de grandes quantidades de dados e melhora continuamente seu desempenho.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>⚡</span>
+    <h3>Velocidade</h3>
+    <p>
+    Processa milhões de informações em segundos, auxiliando empresas e pessoas.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🌍</span>
+    <h3>Impacto Global</h3>
+    <p>
+    Está presente em aplicativos, hospitais, bancos, carros e sistemas inteligentes.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    ESTATÍSTICAS
+    ========================= -->
+    
+    <section>
+    
+    <p class="section-tag">
+    02 • NÚMEROS
+    </p>
+    
+    <h2>A IA em Números</h2>
+    
+    <p class="lead">
+    O crescimento da Inteligência Artificial está transformando a economia mundial.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>💰</span>
+    <h3>US$ 1,8 Trilhão</h3>
+    <p>
+    Valor estimado do mercado global de IA até 2030.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>👨‍💼</span>
+    <h3>97 Milhões</h3>
+    <p>
+    Novos empregos ligados à IA devem surgir nos próximos anos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🏢</span>
+    <h3>70%</h3>
+    <p>
+    Das empresas utilizarão IA em seus processos.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    COMO FUNCIONA
+    ========================= -->
+    
+    <section id="funciona">
+    
+    <p class="section-tag">
+    03 • TECNOLOGIA
+    </p>
+    
+    <h2>Como a Inteligência Artificial Funciona?</h2>
+    
+    <p class="lead">
+    A IA utiliza algoritmos avançados e enormes quantidades de dados para aprender padrões e tomar decisões.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>📊</span>
+    <h3>Machine Learning</h3>
+    <p>
+    Permite que sistemas aprendam automaticamente através da experiência e dos dados.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🔁</span>
+    <h3>Deep Learning</h3>
+    <p>
+    Utiliza redes neurais profundas para resolver problemas complexos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>💬</span>
+    <h3>Linguagem Natural</h3>
+    <p>
+    Permite compreender e gerar textos semelhantes aos produzidos por humanos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🎯</span>
+    <h3>Aprendizado por Reforço</h3>
+    <p>
+    A IA aprende por tentativa e erro recebendo recompensas e penalidades.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>☁️</span>
+    <h3>Computação em Nuvem</h3>
+    <p>
+    Fornece o poder computacional necessário para treinar modelos avançados.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>📂</span>
+    <h3>Big Data</h3>
+    <p>
+    Grandes volumes de dados alimentam os algoritmos e melhoram a precisão.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    IA NO DIA A DIA
+    ========================= -->
+    
+    <section>
+    
+    <p class="section-tag">
+    04 • COTIDIANO
+    </p>
+    
+    <h2>Você Usa IA Todos os Dias</h2>
+    
+    <p class="lead">
+    Mesmo sem perceber, a Inteligência Artificial já faz parte da sua rotina.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>📱</span>
+    <h3>Redes Sociais</h3>
+    <p>
+    Instagram, TikTok e Facebook usam IA para recomendar conteúdos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🎵</span>
+    <h3>Streaming</h3>
+    <p>
+    Netflix, Spotify e YouTube utilizam IA para sugerir conteúdos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🛒</span>
+    <h3>Compras Online</h3>
+    <p>
+    Sites analisam seu comportamento para sugerir produtos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🚗</span>
+    <h3>Mapas</h3>
+    <p>
+    Google Maps e Waze calculam rotas usando Inteligência Artificial.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    <!-- =========================
+BENEFÍCIOS
+========================= -->
+
+<section id="beneficios">
+
+    <p class="section-tag">
+    05 • BENEFÍCIOS
+    </p>
+    
+    <h2>Como a IA Está Transformando o Mundo</h2>
+    
+    <p class="lead">
+    A Inteligência Artificial está revolucionando diversos setores da sociedade, trazendo mais eficiência, segurança e inovação.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>🏥</span>
+    <h3>Saúde</h3>
+    <p>
+    Auxilia médicos em diagnósticos, análise de exames e desenvolvimento de novos medicamentos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🎓</span>
+    <h3>Educação</h3>
+    <p>
+    Personaliza o ensino de acordo com o ritmo de aprendizagem de cada aluno.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🚗</span>
+    <h3>Mobilidade</h3>
+    <p>
+    Ajuda no desenvolvimento de carros autônomos e sistemas inteligentes de trânsito.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🔒</span>
+    <h3>Segurança</h3>
+    <p>
+    Detecta fraudes, ameaças digitais e atividades suspeitas em tempo real.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🌱</span>
+    <h3>Meio Ambiente</h3>
+    <p>
+    Monitora mudanças climáticas, queimadas e desmatamento através de dados.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🎨</span>
+    <h3>Criatividade</h3>
+    <p>
+    Cria imagens, músicas, vídeos, textos e auxilia no desenvolvimento de projetos.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    GALERIA
+    ========================= -->
+    
+    <section id="galeria">
+    
+    <p class="section-tag">
+    06 • GALERIA
+    </p>
+    
+    <h2>Inteligência Artificial em Ação</h2>
+    
+    <p class="lead">
+    Veja algumas representações visuais da tecnologia que está moldando o futuro.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <img
+    src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800"
+    alt="IA"
+    style="
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+    ">
+    
+    <h3>Redes Neurais</h3>
+    
+    <p>
+    Modelos inspirados no cérebro humano capazes de aprender padrões complexos.
+    </p>
+    
+    </div>
+    
+    <div class="card">
+    <img
+    src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800"
+    alt="Robô"
+    style="
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+    ">
+    
+    <h3>Robótica Inteligente</h3>
+    
+    <p>
+    Máquinas equipadas com IA realizam tarefas avançadas em diferentes áreas.
+    </p>
+    
+    </div>
+    
+    <div class="card">
+    <img
+    src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800"
+    alt="Dados"
+    style="
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+    ">
+    
+    <h3>Análise de Dados</h3>
+    
+    <p>
+    A IA processa enormes quantidades de informações em poucos segundos.
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    HISTÓRIA DA IA
+    ========================= -->
+    
+    <section id="historia">
+    
+    <p class="section-tag">
+    07 • HISTÓRIA
+    </p>
+    
+    <h2>A Evolução da Inteligência Artificial</h2>
+    
+    <p class="lead">
+    A IA passou por décadas de avanços até chegar aos sistemas modernos que utilizamos atualmente.
+    </p>
+    
+    <div class="card" style="margin-bottom:20px;">
+    <h3>1950</h3>
+    <p>
+    Alan Turing propõe o famoso Teste de Turing para avaliar a inteligência das máquinas.
+    </p>
+    </div>
+    
+    <div class="card" style="margin-bottom:20px;">
+    <h3>1956</h3>
+    <p>
+    O termo "Inteligência Artificial" é criado durante a Conferência de Dartmouth.
+    </p>
+    </div>
+    
+    <div class="card" style="margin-bottom:20px;">
+    <h3>1997</h3>
+    <p>
+    O computador Deep Blue derrota o campeão mundial de xadrez Garry Kasparov.
+    </p>
+    </div>
+    
+    <div class="card" style="margin-bottom:20px;">
+    <h3>2016</h3>
+    <p>
+    AlphaGo vence um campeão mundial do jogo Go, considerado extremamente complexo.
+    </p>
+    </div>
+    
+    <div class="card">
+    <h3>2022 - Hoje</h3>
+    <p>
+    A popularização da IA Generativa transforma a criação de textos, imagens e vídeos.
+    </p>
+    </div>
+    
+    </section>
+    <!-- =========================
+FUTURO DA IA
+========================= -->
+
+<section id="futuro">
+
+    <p class="section-tag">
+    08 • O FUTURO
+    </p>
+    
+    <h2>Como Será o Futuro da Inteligência Artificial?</h2>
+    
+    <p class="lead">
+    Especialistas acreditam que a IA continuará transformando a sociedade em uma velocidade nunca vista antes.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>🏥</span>
+    <h3>Medicina Inteligente</h3>
+    <p>
+    Diagnósticos instantâneos, tratamentos personalizados e cirurgias mais precisas.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🚘</span>
+    <h3>Carros Autônomos</h3>
+    <p>
+    Veículos capazes de dirigir sozinhos com maior segurança e eficiência.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🤖</span>
+    <h3>Robôs Domésticos</h3>
+    <p>
+    Assistentes inteligentes capazes de auxiliar em tarefas do dia a dia.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🎓</span>
+    <h3>Educação Personalizada</h3>
+    <p>
+    Cada aluno terá um aprendizado adaptado ao seu nível de conhecimento.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🌎</span>
+    <h3>Cidades Inteligentes</h3>
+    <p>
+    Controle de trânsito, energia e segurança totalmente automatizados.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🚀</span>
+    <h3>Exploração Espacial</h3>
+    <p>
+    Missões espaciais assistidas por sistemas inteligentes e autônomos.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    DESAFIOS DA IA
+    ========================= -->
+    
+    <section id="desafios">
+    
+    <p class="section-tag">
+    09 • DESAFIOS
+    </p>
+    
+    <h2>Os Grandes Desafios da IA</h2>
+    
+    <p class="lead">
+    Apesar dos benefícios, a Inteligência Artificial também apresenta questões importantes para a sociedade.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>⚖️</span>
+    <h3>Ética</h3>
+    <p>
+    Garantir que sistemas inteligentes tomem decisões justas e transparentes.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🔒</span>
+    <h3>Privacidade</h3>
+    <p>
+    Proteger os dados pessoais utilizados pelos algoritmos.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>💼</span>
+    <h3>Empregos</h3>
+    <p>
+    A automação exigirá novas habilidades e adaptações profissionais.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>📰</span>
+    <h3>Fake News</h3>
+    <p>
+    Combater conteúdos falsos produzidos por sistemas avançados.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🌐</span>
+    <h3>Regulamentação</h3>
+    <p>
+    Criar leis capazes de acompanhar a velocidade da evolução tecnológica.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🛡️</span>
+    <h3>Segurança</h3>
+    <p>
+    Evitar o uso malicioso da Inteligência Artificial em ataques digitais.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    CURIOSIDADES
+    ========================= -->
+    
+    <section id="curiosidades">
+    
+    <p class="section-tag">
+    10 • CURIOSIDADES
+    </p>
+    
+    <h2>Fatos Impressionantes Sobre IA</h2>
+    
+    <p class="lead">
+    Números que mostram o tamanho da revolução tecnológica que estamos vivendo.
+    </p>
+    
+    <div class="grid">
+    
+    <div class="card">
+    <span>⚡</span>
+    <h3>5 Dias</h3>
+    <p>
+    O ChatGPT atingiu 1 milhão de usuários em apenas cinco dias.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🧠</span>
+    <h3>175 Bilhões</h3>
+    <p>
+    Quantidade de parâmetros utilizados pelo GPT-3.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>📈</span>
+    <h3>US$ 1,8 Trilhão</h3>
+    <p>
+    Valor estimado do mercado global de IA até 2030.
+    </p>
+    </div>
+    
+    <div class="card">
+    <span>🌍</span>
+    <h3>Bilhões de Pessoas</h3>
+    <p>
+    Utilizam sistemas de IA diariamente sem perceber.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    CITAÇÕES
+    ========================= -->
+    
+    <section id="citacoes">
+    
+    <p class="section-tag">
+    11 • ESPECIALISTAS
+    </p>
+    
+    <h2>O Que os Especialistas Dizem</h2>
+    
+    <div class="grid">
+    
+    <div class="card">
+    
+    <span>💬</span>
+    
+    <p style="font-size:1.1rem;">
+    "A Inteligência Artificial é a nova eletricidade."
+    </p>
+    
+    <br>
+    
+    <strong>Andrew Ng</strong>
+    
+    </div>
+    
+    <div class="card">
+    
+    <span>💬</span>
+    
+    <p style="font-size:1.1rem;">
+    "A IA pode ser a melhor ou a pior invenção da humanidade."
+    </p>
+    
+    <br>
+    
+    <strong>Stephen Hawking</strong>
+    
+    </div>
+    
+    <div class="card">
+    
+    <span>💬</span>
+    
+    <p style="font-size:1.1rem;">
+    "A Inteligência Artificial será mais profunda do que a descoberta do fogo."
+    </p>
+    
+    <br>
+    
+    <strong>Sundar Pichai</strong>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    BANNER FINAL
+    ========================= -->
+    
+    <section>
+    
+    <div style="
+    background:linear-gradient(135deg,#00D4FF,#8B5CF6);
+    padding:60px;
+    border-radius:30px;
+    text-align:center;
+    ">
+    
+    <h2 style="
+    margin-bottom:20px;
+    color:white;
+    ">
+    O Futuro Está Sendo Construído Agora
+    </h2>
+    
+    <p style="
+    max-width:700px;
+    margin:auto;
+    color:white;
+    font-size:1.1rem;
+    ">
+    A Inteligência Artificial não é apenas uma tecnologia do futuro.
+    Ela já está presente no nosso cotidiano e continuará transformando o mundo nas próximas décadas.
+    </p>
+    
+    </div>
+    
+    </section>
+    <!-- =========================
+FAQ
+========================= -->
+
+<section id="faq">
+
+    <p class="section-tag">
+    12 • FAQ
+    </p>
+    
+    <h2>Perguntas Frequentes</h2>
+    
+    <p class="lead">
+    Respostas rápidas para dúvidas comuns sobre Inteligência Artificial.
+    </p>
+    
+    <div class="card">
+    
+    <details>
+    <summary><strong>O que é Inteligência Artificial?</strong></summary>
+    <br>
+    <p>
+    É uma tecnologia capaz de simular habilidades humanas como aprendizado, raciocínio e tomada de decisões.
+    </p>
+    </details>
+    
+    </div>
+    
+    <br>
+    
+    <div class="card">
+    
+    <details>
+    <summary><strong>A IA vai substituir os humanos?</strong></summary>
+    <br>
+    <p>
+    A IA tende a automatizar algumas tarefas, mas também cria novas oportunidades e profissões.
+    </p>
+    </details>
+    
+    </div>
+    
+    <br>
+    
+    <div class="card">
+    
+    <details>
+    <summary><strong>Onde usamos IA atualmente?</strong></summary>
+    <br>
+    <p>
+    Em redes sociais, aplicativos de navegação, bancos, hospitais, assistentes virtuais e muito mais.
+    </p>
+    </details>
+    
+    </div>
+    
+    </section>
+    
+    <!-- =========================
+    BOTÃO TOPO
+    ========================= -->
+    
+    <button id="topBtn">
+    ⬆
+    </button>
+    
+    <style>
+    
+    #topBtn{
+    
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    
+    width:55px;
+    height:55px;
+    
+    border:none;
+    border-radius:50%;
+    
+    font-size:22px;
+    
+    cursor:pointer;
+    
+    background:linear-gradient(
+    135deg,
+    #00D4FF,
+    #8B5CF6
+    );
+    
+    color:white;
+    
+    display:none;
+    
+    z-index:9999;
+    
+    box-shadow:
+    0 0 25px rgba(0,212,255,.4);
+    
+    transition:.3s;
+    
+    }
+    
+    #topBtn:hover{
+    
+    transform:translateY(-5px);
+    
+    }
+    
+    footer{
+    
+    margin-top:100px;
+    
+    padding:60px 20px;
+    
+    text-align:center;
+    
+    border-top:1px solid rgba(255,255,255,.1);
+    
+    }
+    
+    footer h3{
+    
+    font-family:'Orbitron',sans-serif;
+    
+    font-size:2rem;
+    
+    margin-bottom:15px;
+    
+    background:linear-gradient(
+    135deg,
+    #00D4FF,
+    #8B5CF6
+    );
+    
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    
+    }
+    
+    footer p{
+    
+    color:#9BA7C7;
+    
+    margin-bottom:10px;
+    
+    }
+    
+    footer .social{
+    
+    margin-top:25px;
+    
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    
+    }
+    
+    footer .social span{
+    
+    background:rgba(255,255,255,.05);
+    
+    padding:10px 18px;
+    
+    border-radius:50px;
+    
+    }
+    
+    </style>
+    
+    <!-- =========================
+    FOOTER
+    ========================= -->
+    
+    <footer>
+    
+    <h3>IA FUTURO</h3>
+    
+    <p>
+    Explorando o presente e construindo o futuro através da Inteligência Artificial.
+    </p>
+    
+    <p>
+    Projeto desenvolvido com HTML, CSS e JavaScript.
+    </p>
+    
+    <div class="social">
+    
+    <span>🤖 Inteligência Artificial</span>
+    
+    <span>🚀 Tecnologia</span>
+    
+    <span>🌎 Inovação</span>
+    
+    <span>💡 Conhecimento</span>
+    
+    </div>
+    
+    <p style="margin-top:30px;">
+    © 2026 - Todos os direitos reservados
+    </p>
+    
+    </footer>
+    
+    <!-- =========================
+    JAVASCRIPT
+    ========================= -->
+    
+    <script>
+    
+    /* BARRA DE PROGRESSO */
+    
+    window.addEventListener("scroll",()=>{
+    
+    let winScroll =
+    document.body.scrollTop ||
+    document.documentElement.scrollTop;
+    
+    let height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+    
+    let scrolled =
+    (winScroll / height) * 100;
+    
+    document.getElementById("progress")
+    .style.width = scrolled + "%";
+    
+    });
+    
+    /* BOTÃO TOPO */
+    
+    const topBtn =
+    document.getElementById("topBtn");
+    
+    window.addEventListener("scroll",()=>{
+    
+    if(window.scrollY > 500){
+    
+    topBtn.style.display="block";
+    
+    }else{
+    
+    topBtn.style.display="none";
+    
+    }
+    
+    });
+    
+    topBtn.addEventListener("click",()=>{
+    
+    window.scrollTo({
+    top:0,
+    behavior:"smooth"
+    });
+    
+    });
+    
+    </script>
+    
+    </body>
+    </html>
+    <section>
+
+        <p class="section-tag">
+        14 • VÍDEO
+        </p>
+        
+        <h2>Conheça a IA em Ação</h2>
+        
+        <div style="
+        position:relative;
+        padding-bottom:56.25%;
+        height:0;
+        overflow:hidden;
+        border-radius:25px;
+        ">
+        
+        <iframe
+        src="https://www.youtube.com/embed/ad79nYk2keg"
+        title="Inteligência Artificial"
+        style="
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        border:none;
+        border-radius:25px;
+        ">
+        </iframe>
+        
+        </div>
+        
+        </section>
