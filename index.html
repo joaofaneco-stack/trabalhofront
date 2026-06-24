@@ -1,1360 +1,664 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Inteligência Artificial - O Futuro é Agora</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-:root{
---bg:#050816;
---bg2:#0A0F1E;
---card:rgba(255,255,255,.05);
---cyan:#00D4FF;
---purple:#8B5CF6;
---white:#F8FAFF;
---muted:#9BA7C7;
---border:rgba(255,255,255,.08);
-
---gradient:
-linear-gradient(
-135deg,
-#00D4FF,
-#8B5CF6
-);
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--white);
-overflow-x:hidden;
-line-height:1.7;
-}
-
-/* Fundo futurista */
-
-body::before{
-content:'';
-position:fixed;
-inset:0;
-
-background:
-radial-gradient(circle at 10% 20%,
-rgba(0,212,255,.15),
-transparent 35%),
-
-radial-gradient(circle at 80% 80%,
-rgba(139,92,246,.15),
-transparent 35%);
-
-z-index:-1;
-}
-
-/* Barra superior */
-
-#progress{
-position:fixed;
-top:0;
-left:0;
-height:4px;
-width:0%;
-background:var(--gradient);
-z-index:9999;
-}
-
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-
-padding:18px 50px;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-background:rgba(5,8,22,.8);
-backdrop-filter:blur(15px);
-
-border-bottom:1px solid var(--border);
-
-z-index:999;
-}
-
-.logo{
-font-family:'Orbitron',sans-serif;
-font-weight:900;
-font-size:1.2rem;
-
-background:var(--gradient);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.menu{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-.menu a{
-color:var(--muted);
-text-decoration:none;
-transition:.3s;
-}
-
-.menu a:hover{
-color:var(--cyan);
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero-box{
-
-max-width:900px;
-
-padding:60px;
-
-background:rgba(255,255,255,.04);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:35px;
-
-box-shadow:
-0 0 50px rgba(0,212,255,.15);
-}
-
-.hero small{
-color:var(--cyan);
-letter-spacing:4px;
-text-transform:uppercase;
-}
-
-.hero h1{
-font-family:'Orbitron',sans-serif;
-font-size:clamp(3rem,8vw,6rem);
-line-height:1.1;
-margin:20px 0;
-}
-
-.hero h1 span{
-background:var(--gradient);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.hero p{
-font-size:1.1rem;
-color:var(--muted);
-max-width:700px;
-margin:auto;
-}
-
-.buttons{
-margin-top:35px;
-
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:15px 35px;
-border-radius:50px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
-
-.primary{
-background:var(--gradient);
-color:white;
-}
-
-.secondary{
-border:1px solid var(--border);
-color:white;
-}
-
-.btn:hover{
-transform:translateY(-5px);
-}
-
-/* Seções */
-
-section{
-padding:100px 8%;
-max-width:1300px;
-margin:auto;
-}
-
-.section-tag{
-color:var(--cyan);
-letter-spacing:4px;
-text-transform:uppercase;
-font-size:.8rem;
-margin-bottom:10px;
-}
-
-h2{
-font-family:'Orbitron',sans-serif;
-font-size:clamp(2rem,5vw,3rem);
-margin-bottom:20px;
-}
-
-.lead{
-color:var(--muted);
-max-width:800px;
-margin-bottom:40px;
-}
-
-/* Cards */
-
-.grid{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.card{
-background:var(--card);
-padding:30px;
-border-radius:25px;
-border:1px solid var(--border);
-
-transition:.4s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-border-color:var(--cyan);
-
-box-shadow:
-0 0 35px rgba(0,212,255,.2);
-}
-
-.card span{
-font-size:2rem;
-display:block;
-margin-bottom:15px;
-}
-
-.card h3{
-margin-bottom:10px;
-}
-
-.card p{
-color:var(--muted);
-}
-
-/* Responsivo */
-
-@media(max-width:768px){
-
-nav{
-padding:15px 20px;
-}
-
-.menu{
-display:none;
-}
-
-.hero-box{
-padding:35px;
-}
-
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inteligência Artificial – O Futuro é Agora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --space:       #0A0F1E;
+      --deep:        #111827;
+      --card-bg:     rgba(255,255,255,0.04);
+      --border:      rgba(0,212,255,0.18);
+      --cyan:        #00D4FF;
+      --violet:      #7B5EA7;
+      --violet-lt:   #A78BCA;
+      --white:       #F0F4FF;
+      --muted:       #8B9FC7;
+      --gradient:    linear-gradient(135deg, #00D4FF 0%, #7B5EA7 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--space);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,15,30,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: 2px;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .85rem;
+      letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ─── HERO ────────────────────────────────── */
+    #hero {
+      position: relative; height: 100vh; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    #neural-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    .hero-content { position: relative; z-index: 2; padding: 0 1.5rem; max-width: 860px; }
+    .hero-eyebrow {
+      font-size: .75rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--cyan); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.08; letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+    }
+    h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.4rem; }
+    .btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: .8rem 2rem; border-radius: 999px; font-size: .9rem;
+      font-weight: 600; text-decoration: none; letter-spacing: .5px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--gradient); color: #fff;
+      box-shadow: 0 0 24px rgba(0,212,255,.35);
+    }
+    .btn-ghost {
+      border: 1px solid var(--border); color: var(--white);
+      background: var(--card-bg);
+    }
+    .btn-ghost:hover { border-color: var(--cyan); }
+
+    /* ─── STATS BAR ───────────────────────────── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 2rem; background: rgba(0,212,255,.05);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: .78rem; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* ─── SECTIONS ────────────────────────────── */
+    section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--cyan); font-weight: 600; margin-bottom: .6rem;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .lead { font-size: 1.05rem; color: var(--muted); max-width: 700px; margin-bottom: 3rem; }
+
+    /* INTRO GRID */
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    @media(max-width:700px){ .intro-grid { grid-template-columns: 1fr; } }
+    .intro-text p { color: var(--muted); margin-bottom: 1rem; }
+    .intro-visual {
+      border-radius: 1.2rem; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(0,212,255,.12);
+    }
+    .intro-visual img { width: 100%; display: block; }
+
+    /* CARD GRID */
+    .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 1.2rem; padding: 2rem;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,212,255,.12);
+    }
+    .card-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Orbitron', sans-serif; font-size: 1rem;
+      font-weight: 700; margin-bottom: .6rem; color: var(--white);
+    }
+    .card p { font-size: .92rem; color: var(--muted); }
+
+    /* CHALLENGE LIST */
+    .challenge-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+    .challenge-list li {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: .9rem; padding: 1.4rem 1.6rem;
+    }
+    .challenge-list li:hover { border-color: var(--violet-lt); }
+    .ch-num {
+      font-family: 'Orbitron', sans-serif; font-size: .8rem;
+      color: var(--violet-lt); font-weight: 700; flex-shrink: 0; padding-top: .1rem;
+    }
+    .ch-body h4 { font-size: .95rem; font-weight: 600; margin-bottom: .3rem; }
+    .ch-body p  { font-size: .88rem; color: var(--muted); }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--cyan), var(--violet));
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 2.4rem; }
+    .tl-dot {
+      position: absolute; left: -2.9rem; top: .3rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+    }
+    .tl-year {
+      font-family: 'Orbitron', sans-serif; font-size: .75rem;
+      color: var(--cyan); letter-spacing: 2px; margin-bottom: .3rem;
+    }
+    .tl-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
+    .tl-item p  { font-size: .88rem; color: var(--muted); }
+
+    /* CURIOSIDADES */
+    .curiosity-grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .curiosity-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.6rem; text-align: center;
+    }
+    .curiosity-card:hover { border-color: var(--violet-lt); }
+    .curiosity-card .big { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .curiosity-card p { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
+
+    /* IMAGENS */
+    .img-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+    @media(max-width:600px){ .img-duo { grid-template-columns: 1fr; } }
+    .img-card { border-radius: 1rem; overflow: hidden; border: 1px solid var(--border); }
+    .img-card img { width: 100%; display: block; object-fit: cover; height: 220px; }
+    .img-caption { font-size: .78rem; color: var(--muted); padding: .7rem 1rem; text-align: center; background: rgba(0,0,0,.3); }
+
+    /* LINKS */
+    .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+    .link-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.4rem 1.6rem;
+      text-decoration: none; display: flex; flex-direction: column; gap: .5rem;
+      transition: border-color .25s, transform .2s;
+    }
+    .link-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+    .link-tag { font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+    .link-title { font-size: .95rem; font-weight: 600; color: var(--white); }
+    .link-desc { font-size: .82rem; color: var(--muted); }
+    .link-arrow { color: var(--cyan); font-size: 1.1rem; align-self: flex-end; margin-top: .4rem; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; max-width: 1100px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem 1.5rem;
+      color: var(--muted); font-size: .82rem;
+      border-top: 1px solid var(--border);
+    }
+    footer span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
 </head>
-
 <body>
 
-<div id="progress"></div>
-
+<!-- ═══ NAV ══════════════════════════════════════════════ -->
 <nav>
-
-<div class="logo">
-IA FUTURO
-</div>
-
-<ul class="menu">
-<li><a href="#sobre">Sobre</a></li>
-<li><a href="#funciona">Como Funciona</a></li>
-<li><a href="#beneficios">Benefícios</a></li>
-<li><a href="#curiosidades">Curiosidades</a></li>
-</ul>
-
+  <span class="nav-logo">IA &amp; FUTURO</span>
+  <ul class="nav-links">
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#como">Como Funciona</a></li>
+    <li><a href="#beneficios">Benefícios</a></li>
+    <li><a href="#desafios">Desafios</a></li>
+    <li><a href="#historia">História</a></li>
+    <li><a href="#curiosidades">Curiosidades</a></li>
+    <li><a href="#links">Links</a></li>
+  </ul>
 </nav>
 
-<section class="hero">
-
-<div class="hero-box">
-
-<small>
-Tecnologia • Inovação • Futuro
-</small>
-
-<h1>
-Inteligência
-<span>Artificial</span>
-</h1>
-
-<p>
-A tecnologia que está transformando o mundo,
-criando novas oportunidades e redefinindo o futuro
-da humanidade.
-</p>
-
-<div class="buttons">
-
-<a href="#sobre" class="btn primary">
-Explorar
-</a>
-
-<a href="#beneficios" class="btn secondary">
-Benefícios
-</a>
-
-</div>
-
-</div>
-
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Trabalho de Front-End · Tecnologia</p>
+    <h1>Inteligência<br/><span>Artificial</span></h1>
+    <p class="hero-sub">A revolução tecnológica que está reconfigurando a maneira como trabalhamos, criamos e nos relacionamos com o mundo.</p>
+    <div class="btn-row">
+      <a href="#intro" class="btn btn-primary">Explorar</a>
+      <a href="#links" class="btn btn-ghost">Fontes Externas</a>
+    </div>
+  </div>
 </section>
-<!-- =========================
-SOBRE A IA
-========================= -->
 
-<section id="sobre">
+<!-- ═══ STATS ══════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">$1.8T</div><div class="stat-label">Mercado em 2030</div></div>
+  <div class="stat"><div class="stat-num">97M</div><div class="stat-label">Novos empregos</div></div>
+  <div class="stat"><div class="stat-num">300M</div><div class="stat-label">Usuários de IA Generativa</div></div>
+  <div class="stat"><div class="stat-num">70%</div><div class="stat-label">Das empresas adotarão IA</div></div>
+</div>
 
-    <p class="section-tag">
-    01 • INTRODUÇÃO
-    </p>
-    
-    <h2>O Que é Inteligência Artificial?</h2>
-    
-    <p class="lead">
-    A Inteligência Artificial (IA) é uma área da computação que desenvolve sistemas capazes de aprender, analisar informações e tomar decisões de forma semelhante aos seres humanos.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>🧠</span>
-    <h3>Aprendizado</h3>
-    <p>
-    A IA aprende através de grandes quantidades de dados e melhora continuamente seu desempenho.
-    </p>
+<!-- ═══ INTRO ══════════════════════════════════════════════ -->
+<section id="intro">
+  <div class="reveal">
+    <p class="section-label">01 · Introdução</p>
+    <h2>O que é Inteligência Artificial?</h2>
+    <p class="lead">Um campo da ciência da computação dedicado a criar sistemas capazes de realizar tarefas que, até pouco tempo, eram exclusividade da mente humana.</p>
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p>A <strong>Inteligência Artificial (IA)</strong> é um ramo da ciência da computação que busca desenvolver sistemas e algoritmos capazes de simular processos cognitivos humanos — como aprender, raciocinar, tomar decisões, perceber e compreender linguagem natural.</p>
+        <p>Diferentemente de um programa tradicional, que segue regras fixas definidas por um programador, sistemas de IA aprendem a partir de dados e experiências, adaptando seu comportamento para resolver problemas novos com cada vez mais precisão.</p>
+        <p>A importância da IA já é inegável: ela impulsiona motores de busca, plataformas de streaming, assistentes virtuais, veículos autônomos, diagnósticos médicos e muito mais. Esta página apresenta seus fundamentos, aplicações, desafios e a trajetória histórica que nos trouxe até aqui.</p>
+      </div>
+      <div class="intro-visual">
+        <img
+          src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop"
+          alt="Representação visual de redes neurais e inteligência artificial com linhas conectadas brilhantes"
+        />
+      </div>
     </div>
-    
-    <div class="card">
-    <span>⚡</span>
-    <h3>Velocidade</h3>
-    <p>
-    Processa milhões de informações em segundos, auxiliando empresas e pessoas.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🌍</span>
-    <h3>Impacto Global</h3>
-    <p>
-    Está presente em aplicativos, hospitais, bancos, carros e sistemas inteligentes.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    ESTATÍSTICAS
-    ========================= -->
-    
-    <section>
-    
-    <p class="section-tag">
-    02 • NÚMEROS
-    </p>
-    
-    <h2>A IA em Números</h2>
-    
-    <p class="lead">
-    O crescimento da Inteligência Artificial está transformando a economia mundial.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>💰</span>
-    <h3>US$ 1,8 Trilhão</h3>
-    <p>
-    Valor estimado do mercado global de IA até 2030.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>👨‍💼</span>
-    <h3>97 Milhões</h3>
-    <p>
-    Novos empregos ligados à IA devem surgir nos próximos anos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🏢</span>
-    <h3>70%</h3>
-    <p>
-    Das empresas utilizarão IA em seus processos.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    COMO FUNCIONA
-    ========================= -->
-    
-    <section id="funciona">
-    
-    <p class="section-tag">
-    03 • TECNOLOGIA
-    </p>
-    
-    <h2>Como a Inteligência Artificial Funciona?</h2>
-    
-    <p class="lead">
-    A IA utiliza algoritmos avançados e enormes quantidades de dados para aprender padrões e tomar decisões.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>📊</span>
-    <h3>Machine Learning</h3>
-    <p>
-    Permite que sistemas aprendam automaticamente através da experiência e dos dados.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🔁</span>
-    <h3>Deep Learning</h3>
-    <p>
-    Utiliza redes neurais profundas para resolver problemas complexos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>💬</span>
-    <h3>Linguagem Natural</h3>
-    <p>
-    Permite compreender e gerar textos semelhantes aos produzidos por humanos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🎯</span>
-    <h3>Aprendizado por Reforço</h3>
-    <p>
-    A IA aprende por tentativa e erro recebendo recompensas e penalidades.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>☁️</span>
-    <h3>Computação em Nuvem</h3>
-    <p>
-    Fornece o poder computacional necessário para treinar modelos avançados.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>📂</span>
-    <h3>Big Data</h3>
-    <p>
-    Grandes volumes de dados alimentam os algoritmos e melhoram a precisão.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    IA NO DIA A DIA
-    ========================= -->
-    
-    <section>
-    
-    <p class="section-tag">
-    04 • COTIDIANO
-    </p>
-    
-    <h2>Você Usa IA Todos os Dias</h2>
-    
-    <p class="lead">
-    Mesmo sem perceber, a Inteligência Artificial já faz parte da sua rotina.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>📱</span>
-    <h3>Redes Sociais</h3>
-    <p>
-    Instagram, TikTok e Facebook usam IA para recomendar conteúdos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🎵</span>
-    <h3>Streaming</h3>
-    <p>
-    Netflix, Spotify e YouTube utilizam IA para sugerir conteúdos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🛒</span>
-    <h3>Compras Online</h3>
-    <p>
-    Sites analisam seu comportamento para sugerir produtos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🚗</span>
-    <h3>Mapas</h3>
-    <p>
-    Google Maps e Waze calculam rotas usando Inteligência Artificial.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    <!-- =========================
-BENEFÍCIOS
-========================= -->
+  </div>
+</section>
 
+<hr class="divider" />
+
+<!-- ═══ COMO FUNCIONA ══════════════════════════════════════ -->
+<section id="como">
+  <div class="reveal">
+    <p class="section-label">02 · Funcionamento</p>
+    <h2>Como a IA Funciona?</h2>
+    <p class="lead">Por trás de toda inteligência artificial existe uma combinação de dados, algoritmos e poder computacional.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Redes Neurais Artificiais</h3>
+        <p>Inspiradas no cérebro humano, são compostas por camadas de "neurônios" matemáticos que processam informações em paralelo, identificando padrões complexos em imagens, texto e áudio.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Machine Learning</h3>
+        <p>Subcampo da IA em que algoritmos aprendem automaticamente a partir de grandes volumes de dados, melhorando seu desempenho com a experiência — sem serem explicitamente programados para cada tarefa.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔁</div>
+        <h3>Deep Learning</h3>
+        <p>Técnica que usa redes neurais com muitas camadas ("profundas") para resolver problemas extremamente complexos, como reconhecimento de fala, tradução automática e geração de imagens.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Processamento de Linguagem Natural</h3>
+        <p>Permite que computadores compreendam, interpretem e gerem linguagem humana. É a tecnologia por trás de chatbots, tradutores automáticos e assistentes de voz como Alexa e Siri.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Aprendizado por Reforço</h3>
+        <p>O modelo aprende interagindo com um ambiente e recebendo recompensas ou penalidades. Foi usada para ensinar IAs a jogar xadrez e Go melhor do que qualquer humano.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗄️</div>
+        <h3>Big Data</h3>
+        <p>A IA é tão boa quanto os dados que a alimentam. Bilhões de exemplos rotulados são coletados e processados para treinar modelos cada vez mais precisos e versáteis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ IMAGENS ════════════════════════════════════════════ -->
+<section id="imagens" style="padding-top: 3rem; padding-bottom: 3rem;">
+  <div class="reveal">
+    <p class="section-label">Galeria</p>
+    <h2>IA em Imagens</h2>
+    <p class="lead">Visualize a tecnologia que está moldando o século XXI.</p>
+    <div class="img-duo">
+      <div class="img-card">
+        <img
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=700&auto=format&fit=crop"
+          alt="Robô humanoide branco interagindo com interface holográfica representando inteligência artificial"
+        />
+        <p class="img-caption">Robôs guiados por IA já realizam tarefas complexas em ambientes industriais e de saúde.</p>
+      </div>
+      <div class="img-card">
+        <img
+          src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=700&auto=format&fit=crop"
+          alt="Visualização de dados e análise preditiva com gráficos coloridos em tela de computador"
+        />
+        <p class="img-caption">Análise de dados em tempo real: a IA processa volumes de informação impossíveis para humanos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ BENEFÍCIOS ════════════════════════════════════════ -->
 <section id="beneficios">
+  <div class="reveal">
+    <p class="section-label">03 · Benefícios</p>
+    <h2>Impactos Positivos da IA</h2>
+    <p class="lead">A inteligência artificial já transforma áreas essenciais da vida humana, trazendo ganhos reais de eficiência, acessibilidade e qualidade de vida.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏥</div>
+        <h3>Saúde</h3>
+        <p>Diagnóstico precoce de câncer, leitura de exames de imagem, descoberta acelerada de medicamentos e cirurgias assistidas por robôs com precisão milimétrica.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌍</div>
+        <h3>Meio Ambiente</h3>
+        <p>Modelos preditivos para mudanças climáticas, otimização do consumo de energia em cidades inteligentes e monitoramento de desmatamento via satélite.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3>Educação</h3>
+        <p>Plataformas adaptativas que identificam o ritmo de cada aluno, tutores virtuais disponíveis 24h e tradução instantânea para democratizar o acesso ao conhecimento.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚗</div>
+        <h3>Mobilidade</h3>
+        <p>Veículos autônomos que prometem reduzir acidentes em 90%, sistemas de trânsito inteligentes e logística otimizada que diminui emissões de carbono.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Segurança</h3>
+        <p>Detecção em tempo real de fraudes bancárias, reconhecimento de padrões em segurança cibernética e sistemas de vigilância que protegem infraestrutura crítica.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Criatividade</h3>
+        <p>Geração de arte, música, literatura e código. Ferramentas como DALL-E e Sora ampliam as possibilidades criativas humanas a um custo e velocidade sem precedentes.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <p class="section-tag">
-    05 • BENEFÍCIOS
-    </p>
-    
-    <h2>Como a IA Está Transformando o Mundo</h2>
-    
-    <p class="lead">
-    A Inteligência Artificial está revolucionando diversos setores da sociedade, trazendo mais eficiência, segurança e inovação.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>🏥</span>
-    <h3>Saúde</h3>
-    <p>
-    Auxilia médicos em diagnósticos, análise de exames e desenvolvimento de novos medicamentos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🎓</span>
-    <h3>Educação</h3>
-    <p>
-    Personaliza o ensino de acordo com o ritmo de aprendizagem de cada aluno.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🚗</span>
-    <h3>Mobilidade</h3>
-    <p>
-    Ajuda no desenvolvimento de carros autônomos e sistemas inteligentes de trânsito.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🔒</span>
-    <h3>Segurança</h3>
-    <p>
-    Detecta fraudes, ameaças digitais e atividades suspeitas em tempo real.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🌱</span>
-    <h3>Meio Ambiente</h3>
-    <p>
-    Monitora mudanças climáticas, queimadas e desmatamento através de dados.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🎨</span>
-    <h3>Criatividade</h3>
-    <p>
-    Cria imagens, músicas, vídeos, textos e auxilia no desenvolvimento de projetos.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    GALERIA
-    ========================= -->
-    
-    <section id="galeria">
-    
-    <p class="section-tag">
-    06 • GALERIA
-    </p>
-    
-    <h2>Inteligência Artificial em Ação</h2>
-    
-    <p class="lead">
-    Veja algumas representações visuais da tecnologia que está moldando o futuro.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <img
-    src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800"
-    alt="IA"
-    style="
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-bottom:15px;
-    ">
-    
-    <h3>Redes Neurais</h3>
-    
-    <p>
-    Modelos inspirados no cérebro humano capazes de aprender padrões complexos.
-    </p>
-    
-    </div>
-    
-    <div class="card">
-    <img
-    src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800"
-    alt="Robô"
-    style="
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-bottom:15px;
-    ">
-    
-    <h3>Robótica Inteligente</h3>
-    
-    <p>
-    Máquinas equipadas com IA realizam tarefas avançadas em diferentes áreas.
-    </p>
-    
-    </div>
-    
-    <div class="card">
-    <img
-    src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800"
-    alt="Dados"
-    style="
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-bottom:15px;
-    ">
-    
-    <h3>Análise de Dados</h3>
-    
-    <p>
-    A IA processa enormes quantidades de informações em poucos segundos.
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    HISTÓRIA DA IA
-    ========================= -->
-    
-    <section id="historia">
-    
-    <p class="section-tag">
-    07 • HISTÓRIA
-    </p>
-    
-    <h2>A Evolução da Inteligência Artificial</h2>
-    
-    <p class="lead">
-    A IA passou por décadas de avanços até chegar aos sistemas modernos que utilizamos atualmente.
-    </p>
-    
-    <div class="card" style="margin-bottom:20px;">
-    <h3>1950</h3>
-    <p>
-    Alan Turing propõe o famoso Teste de Turing para avaliar a inteligência das máquinas.
-    </p>
-    </div>
-    
-    <div class="card" style="margin-bottom:20px;">
-    <h3>1956</h3>
-    <p>
-    O termo "Inteligência Artificial" é criado durante a Conferência de Dartmouth.
-    </p>
-    </div>
-    
-    <div class="card" style="margin-bottom:20px;">
-    <h3>1997</h3>
-    <p>
-    O computador Deep Blue derrota o campeão mundial de xadrez Garry Kasparov.
-    </p>
-    </div>
-    
-    <div class="card" style="margin-bottom:20px;">
-    <h3>2016</h3>
-    <p>
-    AlphaGo vence um campeão mundial do jogo Go, considerado extremamente complexo.
-    </p>
-    </div>
-    
-    <div class="card">
-    <h3>2022 - Hoje</h3>
-    <p>
-    A popularização da IA Generativa transforma a criação de textos, imagens e vídeos.
-    </p>
-    </div>
-    
-    </section>
-    <!-- =========================
-FUTURO DA IA
-========================= -->
+<hr class="divider" />
 
-<section id="futuro">
-
-    <p class="section-tag">
-    08 • O FUTURO
-    </p>
-    
-    <h2>Como Será o Futuro da Inteligência Artificial?</h2>
-    
-    <p class="lead">
-    Especialistas acreditam que a IA continuará transformando a sociedade em uma velocidade nunca vista antes.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>🏥</span>
-    <h3>Medicina Inteligente</h3>
-    <p>
-    Diagnósticos instantâneos, tratamentos personalizados e cirurgias mais precisas.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🚘</span>
-    <h3>Carros Autônomos</h3>
-    <p>
-    Veículos capazes de dirigir sozinhos com maior segurança e eficiência.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🤖</span>
-    <h3>Robôs Domésticos</h3>
-    <p>
-    Assistentes inteligentes capazes de auxiliar em tarefas do dia a dia.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🎓</span>
-    <h3>Educação Personalizada</h3>
-    <p>
-    Cada aluno terá um aprendizado adaptado ao seu nível de conhecimento.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🌎</span>
-    <h3>Cidades Inteligentes</h3>
-    <p>
-    Controle de trânsito, energia e segurança totalmente automatizados.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🚀</span>
-    <h3>Exploração Espacial</h3>
-    <p>
-    Missões espaciais assistidas por sistemas inteligentes e autônomos.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    DESAFIOS DA IA
-    ========================= -->
-    
-    <section id="desafios">
-    
-    <p class="section-tag">
-    09 • DESAFIOS
-    </p>
-    
+<!-- ═══ DESAFIOS ═══════════════════════════════════════════ -->
+<section id="desafios">
+  <div class="reveal">
+    <p class="section-label">04 · Desafios</p>
     <h2>Os Grandes Desafios da IA</h2>
-    
-    <p class="lead">
-    Apesar dos benefícios, a Inteligência Artificial também apresenta questões importantes para a sociedade.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>⚖️</span>
-    <h3>Ética</h3>
-    <p>
-    Garantir que sistemas inteligentes tomem decisões justas e transparentes.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🔒</span>
-    <h3>Privacidade</h3>
-    <p>
-    Proteger os dados pessoais utilizados pelos algoritmos.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>💼</span>
-    <h3>Empregos</h3>
-    <p>
-    A automação exigirá novas habilidades e adaptações profissionais.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>📰</span>
-    <h3>Fake News</h3>
-    <p>
-    Combater conteúdos falsos produzidos por sistemas avançados.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🌐</span>
-    <h3>Regulamentação</h3>
-    <p>
-    Criar leis capazes de acompanhar a velocidade da evolução tecnológica.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🛡️</span>
-    <h3>Segurança</h3>
-    <p>
-    Evitar o uso malicioso da Inteligência Artificial em ataques digitais.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    CURIOSIDADES
-    ========================= -->
-    
-    <section id="curiosidades">
-    
-    <p class="section-tag">
-    10 • CURIOSIDADES
-    </p>
-    
-    <h2>Fatos Impressionantes Sobre IA</h2>
-    
-    <p class="lead">
-    Números que mostram o tamanho da revolução tecnológica que estamos vivendo.
-    </p>
-    
-    <div class="grid">
-    
-    <div class="card">
-    <span>⚡</span>
-    <h3>5 Dias</h3>
-    <p>
-    O ChatGPT atingiu 1 milhão de usuários em apenas cinco dias.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🧠</span>
-    <h3>175 Bilhões</h3>
-    <p>
-    Quantidade de parâmetros utilizados pelo GPT-3.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>📈</span>
-    <h3>US$ 1,8 Trilhão</h3>
-    <p>
-    Valor estimado do mercado global de IA até 2030.
-    </p>
-    </div>
-    
-    <div class="card">
-    <span>🌍</span>
-    <h3>Bilhões de Pessoas</h3>
-    <p>
-    Utilizam sistemas de IA diariamente sem perceber.
-    </p>
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    CITAÇÕES
-    ========================= -->
-    
-    <section id="citacoes">
-    
-    <p class="section-tag">
-    11 • ESPECIALISTAS
-    </p>
-    
-    <h2>O Que os Especialistas Dizem</h2>
-    
-    <div class="grid">
-    
-    <div class="card">
-    
-    <span>💬</span>
-    
-    <p style="font-size:1.1rem;">
-    "A Inteligência Artificial é a nova eletricidade."
-    </p>
-    
-    <br>
-    
-    <strong>Andrew Ng</strong>
-    
-    </div>
-    
-    <div class="card">
-    
-    <span>💬</span>
-    
-    <p style="font-size:1.1rem;">
-    "A IA pode ser a melhor ou a pior invenção da humanidade."
-    </p>
-    
-    <br>
-    
-    <strong>Stephen Hawking</strong>
-    
-    </div>
-    
-    <div class="card">
-    
-    <span>💬</span>
-    
-    <p style="font-size:1.1rem;">
-    "A Inteligência Artificial será mais profunda do que a descoberta do fogo."
-    </p>
-    
-    <br>
-    
-    <strong>Sundar Pichai</strong>
-    
-    </div>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    BANNER FINAL
-    ========================= -->
-    
-    <section>
-    
-    <div style="
-    background:linear-gradient(135deg,#00D4FF,#8B5CF6);
-    padding:60px;
-    border-radius:30px;
-    text-align:center;
-    ">
-    
-    <h2 style="
-    margin-bottom:20px;
-    color:white;
-    ">
-    O Futuro Está Sendo Construído Agora
-    </h2>
-    
-    <p style="
-    max-width:700px;
-    margin:auto;
-    color:white;
-    font-size:1.1rem;
-    ">
-    A Inteligência Artificial não é apenas uma tecnologia do futuro.
-    Ela já está presente no nosso cotidiano e continuará transformando o mundo nas próximas décadas.
-    </p>
-    
-    </div>
-    
-    </section>
-    <!-- =========================
-FAQ
-========================= -->
-
-<section id="faq">
-
-    <p class="section-tag">
-    12 • FAQ
-    </p>
-    
-    <h2>Perguntas Frequentes</h2>
-    
-    <p class="lead">
-    Respostas rápidas para dúvidas comuns sobre Inteligência Artificial.
-    </p>
-    
-    <div class="card">
-    
-    <details>
-    <summary><strong>O que é Inteligência Artificial?</strong></summary>
-    <br>
-    <p>
-    É uma tecnologia capaz de simular habilidades humanas como aprendizado, raciocínio e tomada de decisões.
-    </p>
-    </details>
-    
-    </div>
-    
-    <br>
-    
-    <div class="card">
-    
-    <details>
-    <summary><strong>A IA vai substituir os humanos?</strong></summary>
-    <br>
-    <p>
-    A IA tende a automatizar algumas tarefas, mas também cria novas oportunidades e profissões.
-    </p>
-    </details>
-    
-    </div>
-    
-    <br>
-    
-    <div class="card">
-    
-    <details>
-    <summary><strong>Onde usamos IA atualmente?</strong></summary>
-    <br>
-    <p>
-    Em redes sociais, aplicativos de navegação, bancos, hospitais, assistentes virtuais e muito mais.
-    </p>
-    </details>
-    
-    </div>
-    
-    </section>
-    
-    <!-- =========================
-    BOTÃO TOPO
-    ========================= -->
-    
-    <button id="topBtn">
-    ⬆
-    </button>
-    
-    <style>
-    
-    #topBtn{
-    
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    
-    width:55px;
-    height:55px;
-    
-    border:none;
-    border-radius:50%;
-    
-    font-size:22px;
-    
-    cursor:pointer;
-    
-    background:linear-gradient(
-    135deg,
-    #00D4FF,
-    #8B5CF6
-    );
-    
-    color:white;
-    
-    display:none;
-    
-    z-index:9999;
-    
-    box-shadow:
-    0 0 25px rgba(0,212,255,.4);
-    
-    transition:.3s;
-    
-    }
-    
-    #topBtn:hover{
-    
-    transform:translateY(-5px);
-    
-    }
-    
-    footer{
-    
-    margin-top:100px;
-    
-    padding:60px 20px;
-    
-    text-align:center;
-    
-    border-top:1px solid rgba(255,255,255,.1);
-    
-    }
-    
-    footer h3{
-    
-    font-family:'Orbitron',sans-serif;
-    
-    font-size:2rem;
-    
-    margin-bottom:15px;
-    
-    background:linear-gradient(
-    135deg,
-    #00D4FF,
-    #8B5CF6
-    );
-    
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    
-    }
-    
-    footer p{
-    
-    color:#9BA7C7;
-    
-    margin-bottom:10px;
-    
-    }
-    
-    footer .social{
-    
-    margin-top:25px;
-    
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    
-    }
-    
-    footer .social span{
-    
-    background:rgba(255,255,255,.05);
-    
-    padding:10px 18px;
-    
-    border-radius:50px;
-    
-    }
-    
-    </style>
-    
-    <!-- =========================
-    FOOTER
-    ========================= -->
-    
-    <footer>
-    
-    <h3>IA FUTURO</h3>
-    
-    <p>
-    Explorando o presente e construindo o futuro através da Inteligência Artificial.
-    </p>
-    
-    <p>
-    Projeto desenvolvido com HTML, CSS e JavaScript.
-    </p>
-    
-    <div class="social">
-    
-    <span>🤖 Inteligência Artificial</span>
-    
-    <span>🚀 Tecnologia</span>
-    
-    <span>🌎 Inovação</span>
-    
-    <span>💡 Conhecimento</span>
-    
-    </div>
-    
-    <p style="margin-top:30px;">
-    © 2026 - Todos os direitos reservados
-    </p>
-    
-    </footer>
-    
-    <!-- =========================
-    JAVASCRIPT
-    ========================= -->
-    
-    <script>
-    
-    /* BARRA DE PROGRESSO */
-    
-    window.addEventListener("scroll",()=>{
-    
-    let winScroll =
-    document.body.scrollTop ||
-    document.documentElement.scrollTop;
-    
-    let height =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
-    
-    let scrolled =
-    (winScroll / height) * 100;
-    
-    document.getElementById("progress")
-    .style.width = scrolled + "%";
-    
-    });
-    
-    /* BOTÃO TOPO */
-    
-    const topBtn =
-    document.getElementById("topBtn");
-    
-    window.addEventListener("scroll",()=>{
-    
-    if(window.scrollY > 500){
-    
-    topBtn.style.display="block";
-    
-    }else{
-    
-    topBtn.style.display="none";
-    
-    }
-    
-    });
-    
-    topBtn.addEventListener("click",()=>{
-    
-    window.scrollTo({
-    top:0,
-    behavior:"smooth"
-    });
-    
-    });
-    
-    </script>
-    
-    </body>
-    </html>
-    <section>
-
-        <p class="section-tag">
-        14 • VÍDEO
-        </p>
-        
-        <h2>Conheça a IA em Ação</h2>
-        
-        <div style="
-        position:relative;
-        padding-bottom:56.25%;
-        height:0;
-        overflow:hidden;
-        border-radius:25px;
-        ">
-        
-        <iframe
-        src="https://www.youtube.com/embed/ad79nYk2keg"
-        title="Inteligência Artificial"
-        style="
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        border:none;
-        border-radius:25px;
-        ">
-        </iframe>
-        
+    <p class="lead">Junto com o potencial transformador, a IA traz questões urgentes que a sociedade precisa enfrentar com responsabilidade.</p>
+    <ul class="challenge-list">
+      <li>
+        <span class="ch-num">01</span>
+        <div class="ch-body">
+          <h4>Viés e Discriminação Algorítmica</h4>
+          <p>Modelos treinados em dados históricos tendem a reproduzir — e amplificar — preconceitos existentes na sociedade. IAs de recrutamento, crédito e reconhecimento facial já demonstraram discriminação sistemática contra grupos minoritários.</p>
         </div>
-        
-        </section>
+      </li>
+      <li>
+        <span class="ch-num">02</span>
+        <div class="ch-body">
+          <h4>Privacidade e Vigilância em Massa</h4>
+          <p>A coleta massiva de dados necessária para treinar modelos levanta questões sérias sobre privacidade individual. Sistemas de reconhecimento facial e monitoramento comportamental podem ser instrumentos de controle social autoritário.</p>
+        </div>
+      </li>
+      <li>
+        <span class="ch-num">03</span>
+        <div class="ch-body">
+          <h4>Impacto no Mercado de Trabalho</h4>
+          <p>A automação tende a substituir tarefas repetitivas e cognitivas de nível médio. Estima-se que 85 milhões de postos serão transformados até 2025, exigindo requalificação em escala global — especialmente nos países em desenvolvimento.</p>
+        </div>
+      </li>
+      <li>
+        <span class="ch-num">04</span>
+        <div class="ch-body">
+          <h4>Desinformação e Deepfakes</h4>
+          <p>A IA generativa permite criar vídeos, áudios e textos falsos com qualidade convincente. Esse poder pode ser usado para manipulação eleitoral, fraudes e erosão da confiança pública na mídia e nas instituições.</p>
+        </div>
+      </li>
+      <li>
+        <span class="ch-num">05</span>
+        <div class="ch-body">
+          <h4>Concentração de Poder</h4>
+          <p>O desenvolvimento de IA avançada requer recursos computacionais e volumes de dados acessíveis a apenas poucas grandes corporações e governos, criando um novo tipo de desigualdade tecnológica entre países e entre empresas.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ HISTÓRIA ═══════════════════════════════════════════ -->
+<section id="historia">
+  <div class="reveal">
+    <p class="section-label">05 · História</p>
+    <h2>A Linha do Tempo da IA</h2>
+    <p class="lead">De uma ideia filosófica ao modelo que responde perguntas em linguagem natural — a jornada da inteligência artificial ao longo de décadas.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1950</div>
+        <h4>Alan Turing e o "Teste de Turing"</h4>
+        <p>O matemático britânico propõe a pergunta "as máquinas podem pensar?" e cria o Teste de Turing para avaliar a inteligência de máquinas com base em conversas.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1956</div>
+        <h4>Nascimento Oficial da IA</h4>
+        <p>Na conferência de Dartmouth, John McCarthy cunha o termo "Inteligência Artificial" e define o campo como um projeto científico formal.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1980s</div>
+        <h4>Sistemas Especialistas</h4>
+        <p>Programas que codificavam o conhecimento de especialistas humanos em regras. Usados em diagnósticos médicos e análise financeira, mas com limitações claras.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1997</div>
+        <h4>Deep Blue Vence Kasparov</h4>
+        <p>O supercomputador da IBM derrota o campeão mundial de xadrez Garry Kasparov, demonstrando que máquinas podiam superar humanos em tarefas cognitivas complexas.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2012</div>
+        <h4>Revolução do Deep Learning</h4>
+        <p>A rede neural AlexNet reduz em 40% a taxa de erro no reconhecimento de imagens, iniciando a era moderna da IA baseada em aprendizado profundo.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2016</div>
+        <h4>AlphaGo Domina o Go</h4>
+        <p>O sistema do Google DeepMind vence o campeão mundial de Go — jogo considerado muito mais complexo que xadrez — usando aprendizado por reforço.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2022–Hoje</div>
+        <h4>Era da IA Generativa</h4>
+        <p>ChatGPT, DALL-E, Midjourney, Gemini e dezenas de outros modelos levam a IA ao público geral, transformando a criação de texto, imagem, código e muito mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ CURIOSIDADES ═══════════════════════════════════════ -->
+<section id="curiosidades">
+  <div class="reveal">
+    <p class="section-label">06 · Curiosidades</p>
+    <h2>Fatos Surpreendentes sobre a IA</h2>
+    <p class="lead">Números e fatos que revelam a escala e o impacto real desta tecnologia no mundo.</p>
+    <div class="curiosity-grid">
+      <div class="curiosity-card">
+        <div class="big">175B</div>
+        <p>Parâmetros do GPT-3, modelo que aprendeu a escrever lendo boa parte da internet.</p>
+      </div>
+      <div class="curiosity-card">
+        <div class="big">5 dias</div>
+        <p>Tempo que o ChatGPT levou para atingir 1 milhão de usuários — recorde histórico.</p>
+      </div>
+      <div class="curiosity-card">
+        <div class="big">94%</div>
+        <p>Precisão de IAs no diagnóstico de certos tipos de câncer de pele, superando dermatologistas.</p>
+      </div>
+      <div class="curiosity-card">
+        <div class="big">57 anos</div>
+        <p>É o tempo que a IA levou para aprender a jogar Go melhor que qualquer humano após sua criação em 1959.</p>
+      </div>
+      <div class="curiosity-card">
+        <div class="big">10 horas</div>
+        <p>Em 10 horas de autoaprendizado, o AlphaZero dominou xadrez, Go e shogi melhor que todos os outros sistemas.</p>
+      </div>
+      <div class="curiosity-card">
+        <div class="big">2045</div>
+        <p>Ano em que alguns especialistas preveem que a IA poderá superar a inteligência humana geral — a chamada "Singularidade".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ LINKS ═══════════════════════════════════════════════ -->
+<section id="links">
+  <div class="reveal">
+    <p class="section-label">07 · Fontes</p>
+    <h2>Links Externos Confiáveis</h2>
+    <p class="lead">Aprofunde seu conhecimento com estas fontes referenciadas e confiáveis sobre Inteligência Artificial.</p>
+    <div class="links-grid">
+      <a href="https://www.ibm.com/think/topics/artificial-intelligence" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Empresa · Tecnologia</span>
+        <span class="link-title">IBM — O que é Inteligência Artificial?</span>
+        <span class="link-desc">Guia completo da IBM sobre fundamentos, tipos e aplicações de IA no mundo corporativo.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a href="https://www.nature.com/articles/nature14539" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Científico · Revista Nature</span>
+        <span class="link-title">Nature — Human-level Control via Deep RL</span>
+        <span class="link-desc">O artigo seminal do DeepMind que demonstrou aprendizado profundo capaz de superar humanos em jogos de Atari.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a href="https://ai.google/education/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Educação · Google AI</span>
+        <span class="link-title">Google AI — Educação em IA</span>
+        <span class="link-desc">Cursos, artigos e recursos educacionais gratuitos do Google para aprender sobre IA e machine learning.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a href="https://www.mckinsey.com/featured-insights/artificial-intelligence" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Pesquisa · McKinsey</span>
+        <span class="link-title">McKinsey — IA: Estado do Setor</span>
+        <span class="link-desc">Relatórios anuais com dados e análises sobre adoção, impacto econômico e futuro da inteligência artificial.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a href="https://openai.com/research" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Pesquisa · OpenAI</span>
+        <span class="link-title">OpenAI Research</span>
+        <span class="link-desc">Publicações científicas e relatórios técnicos diretamente do laboratório responsável pelo ChatGPT e GPT-4.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a href="https://news.mit.edu/topic/artificial-intelligence2" target="_blank" rel="noopener" class="link-card">
+        <span class="link-tag">Academia · MIT</span>
+        <span class="link-title">MIT News — Inteligência Artificial</span>
+        <span class="link-desc">Notícias e pesquisas mais recentes do Massachusetts Institute of Technology sobre IA e computação.</span>
+        <span class="link-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <p>Trabalho de Front-End · Página Web Informativa sobre <span>Inteligência Artificial</span></p>
+  <p style="margin-top:.5rem; font-size:.75rem; color:#4a5670;">Desenvolvido com HTML &amp; CSS · Imagens: Unsplash (licença gratuita)</p>
+</footer>
+
+<!-- ═══ SCRIPTS ════════════════════════════════════════════ -->
+<script>
+  /* ─── NEURAL CANVAS ─────────────────────────── */
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function initNodes() {
+    nodes = Array.from({ length: 80 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+      r: Math.random() * 1.8 + .8,
+    }));
+  }
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, W, H);
+    // edges
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          const alpha = (1 - dist / 130) * 0.3;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+          ctx.lineWidth = .6;
+          ctx.stroke();
+        }
+      }
+    }
+    // nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,212,255,0.7)';
+      ctx.fill();
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+    requestAnimationFrame(drawFrame);
+  }
+
+  window.addEventListener('resize', () => { resize(); initNodes(); });
+  resize(); initNodes(); drawFrame();
+
+  /* ─── SCROLL REVEAL ─────────────────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
