@@ -1,3 +1,6 @@
+Aqui está o seu código HTML totalmente atualizado. Alterei as variáveis de cor principais no `:root` e pequenos detalhes no sistema de partículas do JavaScript para que o site mude completamente para uma identidade visual focada em tons de **roxo e rosa neon**, mantendo a estética cibernética e moderna.
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,14 +18,14 @@
             box-sizing:border-box;
         }
         :root{
-            --bg: #0b0214; /* Fundo roxo ultra escuro */
-            --bg-card: #160529; /* Cards roxo profundos */
-            --primary: #FF007A; /* Rosa Neon Vibrante */
-            --secondary: #9E00FF; /* Roxo Neon / Violeta */
-            --accent: #FF52C4; /* Rosa Claro Elétrico */
-            --white: #FFEBF7; /* Branco com sutil toque rosado */
-            --muted: #9D8EA9; /* Texto secundário roxo acinzentado */
-            --border: rgba(255, 0, 122, 0.15); /* Bordas baseadas no rosa neon */
+            --bg: #06020f; /* Fundo roxo profundo */
+            --bg-card: #0e0622; /* Cards roxos escuros */
+            --primary: #FF007F; /* Alterado para Rosa Neon */
+            --secondary: #9E00FF; /* Alterado para Roxo Violeta Neon */
+            --accent: #FF00AA; /* Rosa Vibrante */
+            --white: #FBF7FF; /* Branco levemente arroxeado */
+            --muted: #8E82A6; /* Texto secundário adaptado para a paleta */
+            --border: rgba(255, 0, 127, 0.15);
             --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
         }
         html{
@@ -35,9 +38,813 @@
             overflow-x:hidden;
             line-height: 1.6;
         }
-    </style>
-</head>
-<body>
-    <!-- O conteúdo do seu site entra aqui -->
+        /* Canvas de Partículas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Fundo com Grid Cibernético */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                linear-gradient(rgba(158, 0, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(158, 0, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+        /* Barra de Progresso */
+        #progress{
+            position:fixed;
+            top:0;
+            left:0;
+            height:3px;
+            width:0%;
+            background: var(--gradient);
+            z-index:10000;
+        }
+        /* NAVBAR INTERATIVA */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(6, 2, 15, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 0, 127, 0.1);
+            z-index: 999;
+        }
+        .logo{
+            font-family: 'Syncopate', sans-serif;
+            font-weight:700;
+            font-size:1.1rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .menu {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .menu li {
+            position: relative;
+            z-index: 2;
+        }
+        .menu a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 20px;
+            transition: color 0.3s ease;
+        }
+        /* Indicador Dinâmico */
+        .nav-indicator {
+            position: absolute;
+            height: calc(100% - 12px);
+            background: rgba(255, 0, 127, 0.1);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+            border-radius: 20px;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            top: 6px;
+            left: 0;
+            opacity: 0;
+        }
+        .nav-indicator.clicked-state {
+            background: rgba(158, 0, 255, 0.15);
+            border-color: var(--secondary);
+            box-shadow: 0 0 25px rgba(158, 0, 255, 0.4);
+            animation: pulseClick 0.4s ease-out;
+        }
+        @include keys pulseClick {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .menu a:hover { color: var(--primary); }
+        .menu a.active { color: var(--white); text-shadow: 0 0 8px rgba(255, 0, 127, 0.5); }
+        .menu a.active-click { color: var(--secondary); text-shadow: 0 0 8px rgba(158, 0, 255, 0.6); }
+        /* Menu Hamburguer */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1000;
+        }
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background-color: var(--white);
+            transition: 0.3s;
+        }
+        /* HERO SECTION */
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            padding: 120px 8% 60px 8%;
+        }
+        .hero-box{
+            max-width: 800px;
+            text-align: left;
+        }
+        .hero small{
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .hero h1{
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2.3rem, 5.5vw, 4.2rem);
+            line-height: 1.2;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+        }
+        /* Efeito de Cursor Piscando */
+        .txt-type {
+            background: var(--gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            border-right: 3px solid var(--primary);
+            padding-right: 5px;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+        .hero p{
+            font-size: 1.15rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        .buttons{
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+        .btn{
+            padding:16px 35px;
+            border-radius:4px;
+            text-decoration:none;
+            font-weight:700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .primary{
+            background: var(--primary);
+            color: #06020f;
+            font-weight: 800;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
+        }
+        .secondary{
+            border: 1px solid rgba(158, 0, 255, 0.3);
+            color: var(--white);
+        }
+        .btn:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.3);
+        }
+        
+        .secondary:hover {
+            background: rgba(158, 0, 255, 0.05);
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(158, 0, 255, 0.2);
+        }
+        /* ANIMAÇÃO DE SCROLL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* SEÇÕES */
+        section{
+            padding: 100px 8%;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .section-tag{
+            color: var(--primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: .8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        h2{
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        .lead{
+            color: var(--muted);
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin-bottom: 60px;
+        }
+        /* CARDS */
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card{
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+            position: relative;
+            overflow: hidden;
+            transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .card:hover{
+            transform: translateY(-8px);
+            border-color: rgba(255, 0, 127, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .card:hover::before { opacity: 1; }
+        .card-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .card h3{
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .card p{
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        /* SIMULADOR INTERATIVO DE PROMPT */
+        .simulator-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        .sim-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .sim-input {
+            flex: 1;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 20px;
+            border-radius: 6px;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        .sim-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px rgba(158,0,255,0.1);
+        }
+        .sim-btn {
+            background: var(--primary);
+            color: #06020f;
+            border: none;
+            padding: 0 25px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .sim-btn:hover {
+            box-shadow: 0 0 20px var(--primary);
+            transform: translateY(-2px);
+        }
+        .sim-output {
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            padding: 20px;
+            min-height: 100px;
+            border: 1px solid rgba(255,255,255,0.02);
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+        /* TIMELINE HISTÓRIA */
+        .history-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .history-item {
+            display: flex;
+            gap: 30px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .history-year {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            min-width: 100px;
+        }
+        /* FAQ */
+        details {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.02);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        details[open] { border-color: rgba(158, 0, 255, 0.2); }
+        summary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::after { content: '+'; color: var(--primary); font-size: 1.4rem; }
+        details[open] summary::after { content: '−'; }
+        /* SEÇÃO FINAL DA FOTO DE DEUS */
+        .divine-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 100px 8%;
+            border-top: 1px solid rgba(158, 0, 255, 0.1);
+            background: linear-gradient(to bottom, transparent, rgba(158, 0, 255, 0.03));
+        }
+        .divine-image-container {
+            max-width: 650px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(158, 0, 255, 0.2);
+            border: 1px solid var(--secondary);
+            margin-top: 30px;
+        }
+        .divine-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: saturate(1.2) contrast(1.1);
+        }
+        /* VOLTAR AO TOPO */
+        #topBtn{
+            position:fixed;
+            bottom:40px;
+            right:40px;
+            width:50px;
+            height:50px;
+            border:none;
+            border-radius:4px;
+            font-size:18px;
+            cursor:pointer;
+            background: var(--primary);
+            color: #06020f;
+            display:none;
+            z-index:9999;
+            transition:.3s;
+            font-weight: bold;
+        }
+        #topBtn:hover{ transform: translateY(-5px); box-shadow: 0 0 20px var(--primary); }
+        /* BOTÃO FLUTUANTE DO WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background-color: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-icon-svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        /* FOOTER */
+        footer{
+            margin-top: 120px;
+            padding: 80px 8%;
+            background: #04010a;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+        footer h3{
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        footer p{ color: var(--muted); margin-bottom: 25px; }
+        footer .social{ display:flex; gap:15px; flex-wrap:wrap; }
+        footer .social span{
+            background: var(--bg-card);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        /* RESPONSIVIDADE */
+        @media(max-width: 992px) {
+            .menu-toggle { display: flex; }
+            
+            .menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: #090314;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px;
+                border-radius: 0;
+                border: none;
+                border-left: 1px solid rgba(158, 0, 255, 0.1);
+                transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .menu.active { right: 0; }
+            .nav-indicator { display: none; }
+            .menu a { width: 100%; text-align: center; }
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); background-color: var(--primary); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background-color: var(--primary); }
+            
+            .history-item { flex-direction: column; gap: 10px; }
+            .sim-input-group { flex-direction: column; }
+            .sim-btn { padding: 15px; }
+            
+            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; }
+            #topBtn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+        }
+    </style></head><body>
+    <canvas id="particles-canvas"></canvas>
+    <div id="progress"></div>
+    <a href="https://wa.me/5544984226741?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20IA%20Evolution." class="whatsapp-float" target="_blank" aria-label="Contato via WhatsApp">
+        <svg class="whatsapp-icon-svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+    <nav>
+        <a href="#" class="logo">IA <span>//</span> EVOLUTION</a>
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="menu" id="nav-menu">
+                <div class="nav-indicator" id="indicator"></div>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#simulador" class="nav-link">Simulador</a></li>
+                <li><a href="#funciona" class="nav-link">Tecnologia</a></li>
+                <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-box">
+            <small>Deep Learning • Automação • Próxima Era</small>
+            <h1>Inteligência<br><span class="txt-type" data-words='["Artificial", "Generativa", "Preditiva"]'></span></h1>
+            <p>A tecnologia que deixou de pertencer ao futuro para redefinir as regras e estruturas da sociedade contemporânea.</p>
+            <div class="buttons">
+                <a href="#sobre" class="btn primary">Iniciar Exploração</a>
+                <a href="#simulador" class="btn secondary">Testar Prompt</a>
+            </div>
+        </div>
+    </section>
+    <section id="sobre" class="reveal">
+        <p class="section-tag">// 01 . INTRODUÇÃO</p>
+        <h2>O Que é Inteligência Artificial?</h2>
+        <p class="lead">A Inteligência Artificial (IA) é um ecossistema da computação dedicado a criar algoritmos capazes de processar dados complexos, aprender comportamentos e automatizar decisões.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Auto-Aprendizado</h3>
+                <p>Modelos matemáticos refinados por meio de loops contínuos de ingestão de dados e refinamento.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h3>Hiper-Velocidade</h3>
+                <p>Análise preditiva de petabytes em frações de segundos, viabilizando operações críticas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <h3>Ubiquidade Coletiva</h3>
+                <p>Integrada diretamente à infraestrutura global: logística, saúde, finanças e tráfego autônomo.</p>
+            </div>
+        </div>
+    </section>
+    <section id="simulador" class="reveal">
+        <p class="section-tag">// 02 . INTERATIVIDADE</p>
+        <h2 style="text-align: center;">Laboratório de Inferência Neural</h2>
+        <p class="lead" style="text-align: center; margin: 0 auto 40px auto;">Simule o envio de um comando para o núcleo da nossa inteligência artificial local.</p>
+        
+        <div class="simulator-box">
+            <div class="sim-input-group">
+                <input type="text" id="prompt-in" class="sim-input" placeholder="Ex: Crie um plano para automação de processos..." aria-label="Digite seu comando para a IA">
+                <button id="prompt-btn" class="sim-btn">Executar</button>
+            </div>
+            <div id="prompt-out" class="sim-output">Aguardando comando na fila de processamento...</div>
+        </div>
+    </section>
+    
+    <section id="funciona" class="reveal">
+        <p class="section-tag">// 03 . ESTRUTURA</p>
+        <h2>A Arquitetura por Trás da Tecnologia</h2>
+        <p class="lead">Sistemas baseados em redes neurais de múltiplas camadas ocultas computando padrões estatísticos complexos.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Machine Learning</h3>
+                <p>Mecanismos algorítmicos projetados para evolução autônoma sem programação explícita.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔁</div>
+                <h3>Deep Learning</h3>
+                <p>Abstrações multicamadas que espelham conexões sinápticas para inferências avançadas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Modelos Transformers</h3>
+                <p>Redes neurais capazes de mapear e gerar textos e interações contextuais complexas.</p>
+            </div>
+        </div>
+    </section>
+    <section id="beneficios" class="reveal">
+        <p class="section-tag">// 04 . APLICAÇÕES</p>
+        <h2>Setores em Transformação Crítica</h2>
+        <p class="lead">Aplicações práticas solucionando grandes complexidades da civilização contemporânea.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🏥</div>
+                <h3>Medicina Preditiva</h3>
+                <p>Identificação precoce de anomalias celulares e desenvolvimento otimizado de novos fármacos.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌱</div>
+                <h3>Biosfera & Clima</h3>
+                <p>Monitoramento via satélite em tempo real de variações biológicas e focos inflamatórios ecológicos.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Mídias Sintéticas</h3>
+                <p>Sistemas generativos expandindo os limites e ferramentas do design e da criatividade digital.</p>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="reveal">
+        <p class="section-tag">// 05 . FAQ</p>
+        <h2>Perguntas Frequentes</h2>
+        <p class="lead">Esclarecimentos diretos sobre mitos, verdades da automação e privacidade.</p>
+        
+        <details>
+            <summary>A inteligência artificial irá substituir empregos?</summary>
+            <p style="color: var(--muted); margin-top:15px;">A IA redesenha o mercado. Funções repetitivas tendem à automação completa, abrindo espaço para novas engenharias de comando e supervisores de modelos de dados.</p>
+        </details>
+        <details>
+            <summary>Como funcionam os modelos generativos?</summary>
+            <p style="color: var(--muted); margin-top:15px;">Eles operam à base de predição estatística pura em larga escala, calculando qual o próximo caractere ou elemento visual mais provável de aparecer baseado no contexto de entrada.</p>
+        </details>
+        <details>
+            <summary>Como a segurança dos dados é treated nos sistemas de IA?</summary>
+            <p style="color: var(--muted); margin-top:15px;">Modelos de nível empresarial utilizam criptografia avançada de ponta a ponta e pipelines isolados (anonymized data rooms) para garantir conformidade com regras globais de privacidade, como a LGPD e o GDPR.</p>
+        </details>
+        <details>
+            <summary>Qual a diferença básica entre Inteligência Artificial e Automação simples?</summary>
+            <p style="color: var(--muted); margin-top:15px;">A automação simples segue regras fixas predefinidas (Se A acontecer, faça B). A IA analisa dados dinâmicos, identifica novos caminhos por conta própria e toma decisões preditivas sem precisar de regras manuais para cada cenário.</p>
+        </details>
+    </section>
+    <section class="divine-section reveal">
+        <p class="section-tag">// 06 . HORIZONTE DA CRIAÇÃO</p>
+        <h2>A Origem de Toda a Ordem</h2>
+        <p class="lead">Seja através das leis matemáticas da física, da engenharia biológica da natureza ou da fé, a busca humana pela inteligência reflete nosso vislumbre de um Arquiteto Supremo.</p>
+        <div class="divine-image-container">
+            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=800" alt="Nebulosa Cósmica simbolizando a Criação Divina e o Olho do Universo">
+        </div>
+    </section>
+    <button id="topBtn" title="Voltar ao topo">↑</button>
+    
+    <footer>
+        <h3>IA // EVOLUTION</h3>
+        <p>Decodificando as novas fronteiras da automação digital e computação neural.</p>
+        <div class="social">
+            <span>🤖 Core Neural</span>
+            <span>🚀 Tech-Shift</span>
+            <span>💡 Deep Systems</span>
+        </div>
+        <p style="margin-top:40px; font-size:0.85rem;">© 2026 - Futuro Exponencial Integrado.</p>
+    </footer>
+    <script>
+        /* 1. SISTEMA DE PARTÍCULAS EM CANVAS */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 0.2 - 0.1;
+                this.speedY = Math.random() * -0.3 - 0.1;
+                /* Atualizado: Cores das partículas alteradas para Rosa e Roxo no Canvas */
+                this.color = Math.random() > 0.5 ? 'rgba(255, 0, 127, 0.2)' : 'rgba(158, 0, 255, 0.2)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        /* 2. EFEITO TYPEWRITER */
+        class TypeWriter {
+            constructor(txtElement, words, wait = 3000) {
+                this.txtElement = txtElement;
+                this.words = words;
+                this.txt = '';
+                this.wordIndex = 0;
+                this.wait = parseInt(wait, 10);
+                this.type();
+                this.isDeleting = false;
+            }
+            type() {
+                const current = this.wordIndex % this.words.length;
+                const fullTxt = this.words[current];
+
+                if(this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+                let typeSpeed = 100;
+
+                if(this.isDeleting) { typeSpeed /= 2; }
+
+                if(!this.isDeleting && this.txt === fullTxt) {
+                    typeSpeed = this.wait;
+                    this.isDeleting = true;
+                } else if(this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.wordIndex++;
+                    typeSpeed = 400;
+                }
+
+                setTimeout(() => this.type(), typeSpeed);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const txtElement = document.querySelector('.txt-type');
+            const words = JSON.parse(txtElement.getAttribute('data-words'));
+            new TypeWriter(txtElement, words, 2500);
+        });
+
+
+        /* 3. SIMULADOR INTERATIVO DE PROMPT */
+        const promptIn = document.getElementById('prompt-in');
+        const promptBtn = document.getElementById('prompt-btn');
+        const promptOut = document.getElementById('prompt-out');
+
+        promptBtn.addEventListener('click', () => {
+            const text = promptIn.value.trim();
+            if(!text) {
+                promptOut.innerText = "Por favor, insira um comando válido na linha de entrada.";
+                return;
+            }
+            promptOut.innerHTML = "<span style='color: var(--primary);'>[Processando]</span>";
+        });
+    </script>
 </body>
 </html>
+
+```
