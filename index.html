@@ -1,850 +1,1555 @@
-Aqui está o seu código HTML totalmente atualizado. Alterei as variáveis de cor principais no `:root` e pequenos detalhes no sistema de partículas do JavaScript para que o site mude completamente para uma identidade visual focada em tons de **roxo e rosa neon**, mantendo a estética cibernética e moderna.
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA - A Nova Era da Evolução</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-        :root{
-            --bg: #06020f; /* Fundo roxo profundo */
-            --bg-card: #0e0622; /* Cards roxos escuros */
-            --primary: #FF007F; /* Alterado para Rosa Neon */
-            --secondary: #9E00FF; /* Alterado para Roxo Violeta Neon */
-            --accent: #FF00AA; /* Rosa Vibrante */
-            --white: #FBF7FF; /* Branco levemente arroxeado */
-            --muted: #8E82A6; /* Texto secundário adaptado para a paleta */
-            --border: rgba(255, 0, 127, 0.15);
-            --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
-        }
-        html{
-            scroll-behavior:smooth;
-        }
-        body{
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--white);
-            overflow-x:hidden;
-            line-height: 1.6;
-        }
-        /* Canvas de Partículas */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        /* Fundo com Grid Cibernético */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: 
-                linear-gradient(rgba(158, 0, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(158, 0, 255, 0.01) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-        }
-        /* Barra de Progresso */
-        #progress{
-            position:fixed;
-            top:0;
-            left:0;
-            height:3px;
-            width:0%;
-            background: var(--gradient);
-            z-index:10000;
-        }
-        /* NAVBAR INTERATIVA */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(6, 2, 15, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 0, 127, 0.1);
-            z-index: 999;
-        }
-        .logo{
-            font-family: 'Syncopate', sans-serif;
-            font-weight:700;
-            font-size:1.1rem;
-            letter-spacing: 2px;
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        .menu {
-            display: flex;
-            gap: 10px;
-            list-style: none;
-            position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .menu li {
-            position: relative;
-            z-index: 2;
-        }
-        .menu a {
-            color: var(--muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 20px;
-            display: block;
-            border-radius: 20px;
-            transition: color 0.3s ease;
-        }
-        /* Indicador Dinâmico */
-        .nav-indicator {
-            position: absolute;
-            height: calc(100% - 12px);
-            background: rgba(255, 0, 127, 0.1);
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
-            border-radius: 20px;
-            z-index: 1;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            pointer-events: none;
-            top: 6px;
-            left: 0;
-            opacity: 0;
-        }
-        .nav-indicator.clicked-state {
-            background: rgba(158, 0, 255, 0.15);
-            border-color: var(--secondary);
-            box-shadow: 0 0 25px rgba(158, 0, 255, 0.4);
-            animation: pulseClick 0.4s ease-out;
-        }
-        @include keys pulseClick {
-            0% { transform: scale(0.95); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .menu a:hover { color: var(--primary); }
-        .menu a.active { color: var(--white); text-shadow: 0 0 8px rgba(255, 0, 127, 0.5); }
-        .menu a.active-click { color: var(--secondary); text-shadow: 0 0 8px rgba(158, 0, 255, 0.6); }
-        /* Menu Hamburguer */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            z-index: 1000;
-        }
-        .menu-toggle span {
-            width: 28px;
-            height: 2px;
-            background-color: var(--white);
-            transition: 0.3s;
-        }
-        /* HERO SECTION */
-        .hero{
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            padding: 120px 8% 60px 8%;
-        }
-        .hero-box{
-            max-width: 800px;
-            text-align: left;
-        }
-        .hero small{
-            color: var(--primary);
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            display: block;
-            margin-bottom: 15px;
-        }
-        .hero h1{
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2.3rem, 5.5vw, 4.2rem);
-            line-height: 1.2;
-            margin-bottom: 25px;
-            letter-spacing: -2px;
-        }
-        /* Efeito de Cursor Piscando */
-        .txt-type {
-            background: var(--gradient);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            border-right: 3px solid var(--primary);
-            padding-right: 5px;
-            animation: blink 0.75s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary); }
-        }
-        .hero p{
-            font-size: 1.15rem;
-            color: var(--muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-        .buttons{
-            display:flex;
-            gap:20px;
-            flex-wrap:wrap;
-        }
-        .btn{
-            padding:16px 35px;
-            border-radius:4px;
-            text-decoration:none;
-            font-weight:700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .primary{
-            background: var(--primary);
-            color: #06020f;
-            font-weight: 800;
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
-        }
-        .secondary{
-            border: 1px solid rgba(158, 0, 255, 0.3);
-            color: var(--white);
-        }
-        .btn:hover{
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.3);
-        }
-        
-        .secondary:hover {
-            background: rgba(158, 0, 255, 0.05);
-            border-color: var(--secondary);
-            box-shadow: 0 0 20px rgba(158, 0, 255, 0.2);
-        }
-        /* ANIMAÇÃO DE SCROLL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* SEÇÕES */
-        section{
-            padding: 100px 8%;
-            max-width: 1400px;
-            margin: auto;
-        }
-        .section-tag{
-            color: var(--primary);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: .8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        h2{
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.6rem, 3.5vw, 2.5rem);
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-        }
-        .lead{
-            color: var(--muted);
-            font-size: 1.15rem;
-            max-width: 750px;
-            margin-bottom: 60px;
-        }
-        /* CARDS */
-        .grid{
-            display:grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .card{
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.03);
-            position: relative;
-            overflow: hidden;
-            transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--gradient);
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .card:hover{
-            transform: translateY(-8px);
-            border-color: rgba(255, 0, 127, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        .card:hover::before { opacity: 1; }
-        .card-icon {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 25px;
-            color: var(--primary);
-        }
-        .card h3{
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        .card p{
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-        /* SIMULADOR INTERATIVO DE PROMPT */
-        .simulator-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 0, 127, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        .sim-input-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .sim-input {
-            flex: 1;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 15px 20px;
-            border-radius: 6px;
-            color: var(--white);
-            font-family: inherit;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        .sim-input:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 15px rgba(158,0,255,0.1);
-        }
-        .sim-btn {
-            background: var(--primary);
-            color: #06020f;
-            border: none;
-            padding: 0 25px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .sim-btn:hover {
-            box-shadow: 0 0 20px var(--primary);
-            transform: translateY(-2px);
-        }
-        .sim-output {
-            background: rgba(0,0,0,0.2);
-            border-radius: 6px;
-            padding: 20px;
-            min-height: 100px;
-            border: 1px solid rgba(255,255,255,0.02);
-            font-size: 0.95rem;
-            color: var(--muted);
-        }
-        /* TIMELINE HISTÓRIA */
-        .history-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .history-item {
-            display: flex;
-            gap: 30px;
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .history-year {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            min-width: 100px;
-        }
-        /* FAQ */
-        details {
-            background: var(--bg-card);
-            padding: 24px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.02);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        details[open] { border-color: rgba(158, 0, 255, 0.2); }
-        summary {
-            font-size: 1.1rem;
-            font-weight: 600;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::after { content: '+'; color: var(--primary); font-size: 1.4rem; }
-        details[open] summary::after { content: '−'; }
-        /* SEÇÃO FINAL DA FOTO DE DEUS */
-        .divine-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 100px 8%;
-            border-top: 1px solid rgba(158, 0, 255, 0.1);
-            background: linear-gradient(to bottom, transparent, rgba(158, 0, 255, 0.03));
-        }
-        .divine-image-container {
-            max-width: 650px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(158, 0, 255, 0.2);
-            border: 1px solid var(--secondary);
-            margin-top: 30px;
-        }
-        .divine-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: saturate(1.2) contrast(1.1);
-        }
-        /* VOLTAR AO TOPO */
-        #topBtn{
-            position:fixed;
-            bottom:40px;
-            right:40px;
-            width:50px;
-            height:50px;
-            border:none;
-            border-radius:4px;
-            font-size:18px;
-            cursor:pointer;
-            background: var(--primary);
-            color: #06020f;
-            display:none;
-            z-index:9999;
-            transition:.3s;
-            font-weight: bold;
-        }
-        #topBtn:hover{ transform: translateY(-5px); box-shadow: 0 0 20px var(--primary); }
-        /* BOTÃO FLUTUANTE DO WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            background-color: #25d366;
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
-        }
-        .whatsapp-icon-svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-        /* FOOTER */
-        footer{
-            margin-top: 120px;
-            padding: 80px 8%;
-            background: #04010a;
-            border-top: 1px solid rgba(255,255,255,0.02);
-        }
-        footer h3{
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        footer p{ color: var(--muted); margin-bottom: 25px; }
-        footer .social{ display:flex; gap:15px; flex-wrap:wrap; }
-        footer .social span{
-            background: var(--bg-card);
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        /* RESPONSIVIDADE */
-        @media(max-width: 992px) {
-            .menu-toggle { display: flex; }
-            
-            .menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 320px;
-                height: 100vh;
-                background: #090314;
-                flex-direction: column;
-                justify-content: center;
-                gap: 20px;
-                padding: 40px;
-                border-radius: 0;
-                border: none;
-                border-left: 1px solid rgba(158, 0, 255, 0.1);
-                transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            .menu.active { right: 0; }
-            .nav-indicator { display: none; }
-            .menu a { width: 100%; text-align: center; }
-            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); background-color: var(--primary); }
-            .menu-toggle.active span:nth-child(2) { opacity: 0; }
-            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background-color: var(--primary); }
-            
-            .history-item { flex-direction: column; gap: 10px; }
-            .sim-input-group { flex-direction: column; }
-            .sim-btn { padding: 15px; }
-            
-            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; }
-            #topBtn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
-        }
-    </style></head><body>
-    <canvas id="particles-canvas"></canvas>
-    <div id="progress"></div>
-    <a href="https://wa.me/5544984226741?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20IA%20Evolution." class="whatsapp-float" target="_blank" aria-label="Contato via WhatsApp">
-        <svg class="whatsapp-icon-svg" viewBox="0 0 448 512">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
-    </a>
-    <nav>
-        <a href="#" class="logo">IA <span>//</span> EVOLUTION</a>
-        <div class="nav-container">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="menu" id="nav-menu">
-                <div class="nav-indicator" id="indicator"></div>
-                <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                <li><a href="#simulador" class="nav-link">Simulador</a></li>
-                <li><a href="#funciona" class="nav-link">Tecnologia</a></li>
-                <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-            </ul>
-        </div>
-    </nav>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="VANTA Sports — loja esportiva fictícia com produtos masculinos, femininos e casuais.">
+  <title>VANTA Sports — Performance & Lifestyle</title>
+  <style>
+    :root {
+      --black: #080808;
+      --black2: #111;
+      --white: #fff;
+      --gray: #707070;
+      --light: #f5f5f5;
+      --line: #e7e7e7;
+      --green: #19a463;
+      --red: #d92727;
+      --radius: 18px;
+      --shadow: 0 15px 45px rgba(0, 0, 0, .10);
+      --max: 1380px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #fff;
+      color: var(--black);
+      line-height: 1.45
+    }
+
+    button,
+    input,
+    select {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto
+    }
+
+    /* TOPBAR / HEADER */
+    .topbar {
+      background: #080808;
+      color: #fff;
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+      letter-spacing: .4px
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      gap: 30px
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.5px
+    }
+
+    .logo span {
+      font-weight: 400
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex: 1
+    }
+
+    .navlinks a {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .navlinks a:hover {
+      text-decoration: underline
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: transparent;
+      border-radius: 50%;
+      font-size: 19px
+    }
+
+    .icon-btn:hover {
+      background: #f0f0f0
+    }
+
+    .cart-count {
+      position: absolute;
+      margin: -28px 0 0 23px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      min-width: 17px;
+      height: 17px;
+      font-size: 10px;
+      display: grid;
+      place-items: center
+    }
+
+    .menu-btn {
+      display: none
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 600px;
+      background: #eee;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, .72), rgba(0, 0, 0, .20), rgba(0, 0, 0, .05)),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1800&q=85") center/cover
+    }
+
+    .hero-content {
+      position: relative;
+      color: #fff;
+      min-height: 600px;
+      display: flex;
+      align-items: center
+    }
+
+    .hero-copy {
+      max-width: 620px
+    }
+
+    .kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 86px);
+      line-height: .92;
+      letter-spacing: -5px;
+      margin-bottom: 25px
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 500px;
+      color: #eee;
+      margin-bottom: 30px
+    }
+
+    .btn {
+      border: 0;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: .2s
+    }
+
+    .btn-dark {
+      background: #000;
+      color: #fff
+    }
+
+    .btn-white {
+      background: #fff;
+      color: #000
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .9
+    }
+
+    .hero .btn {
+      margin-right: 8px
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 72px 0
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 30px;
+      gap: 20px
+    }
+
+    .section-title {
+      font-size: 34px;
+      letter-spacing: -1.5px
+    }
+
+    .section-sub {
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: 5px
+    }
+
+    .view-all {
+      text-decoration: underline;
+      font-weight: 700;
+      font-size: 14px
+    }
+
+    /* CATEGORY TILES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px
+    }
+
+    .cat {
+      height: 390px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      background: #ddd
+    }
+
+    .cat img {
+      height: 100%;
+      transition: .4s
+    }
+
+    .cat:hover img {
+      transform: scale(1.04)
+    }
+
+    .cat::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 45%, rgba(0, 0, 0, .65))
+    }
+
+    .cat-content {
+      position: absolute;
+      z-index: 2;
+      bottom: 25px;
+      left: 25px;
+      color: #fff
+    }
+
+    .cat-content h3 {
+      font-size: 27px
+    }
+
+    .cat-content p {
+      font-size: 13px;
+      margin-top: 4px
+    }
+
+    /* FILTERS */
+    .shop-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 700;
+      font-size: 13px
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000
+    }
+
+    .sort {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      background: #fff
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px
+    }
+
+    .product {
+      position: relative;
+      min-width: 0
+    }
+
+    .product-image {
+      height: 390px;
+      background: #f2f2f2;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .product-image img {
+      height: 100%;
+      transition: .35s
+    }
+
+    .product:hover .product-image img {
+      transform: scale(1.035)
+    }
+
+    .badge {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      background: #fff;
+      padding: 6px 9px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      z-index: 2
+    }
+
+    .wish {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 0;
+      background: #fff;
+      font-size: 18px;
+      z-index: 2
+    }
+
+    .wish.active {
+      color: #d92727
+    }
+
+    .product-info {
+      padding: 13px 2px
+    }
+
+    .product-category {
+      color: #777;
+      font-size: 12px
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 4px 0
+    }
+
+    .product-color {
+      font-size: 12px;
+      color: #777
+    }
+
+    .price {
+      font-weight: 800;
+      margin-top: 9px
+    }
+
+    .old-price {
+      color: #888;
+      text-decoration: line-through;
+      font-weight: 400;
+      margin-right: 7px;
+      font-size: 13px
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 11px
+    }
+
+    .small-btn {
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      flex: 1
+    }
+
+    .small-btn.primary {
+      background: #000;
+      color: #fff;
+      border-color: #000
+    }
+
+    /* PROMO */
+    .promo {
+      background: #f2f2f2;
+      border-radius: 22px;
+      min-height: 350px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden
+    }
+
+    .promo-copy {
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .promo h2 {
+      font-size: 45px;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 15px
+    }
+
+    .promo p {
+      color: #555;
+      margin-bottom: 25px;
+      max-width: 450px
+    }
+
+    .promo img {
+      height: 100%;
+      min-height: 350px
+    }
+
+    /* BENEFITS */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .benefit {
+      padding: 28px 20px;
+      border-right: 1px solid var(--line)
+    }
+
+    .benefit:last-child {
+      border: 0
+    }
+
+    .benefit strong {
+      display: block;
+      margin-bottom: 7px
+    }
+
+    .benefit p {
+      font-size: 13px;
+      color: #666
+    }
+
+    /* FOOTER */
+    footer {
+      background: #080808;
+      color: #fff;
+      margin-top: 40px
+    }
+
+    .footer-main {
+      padding: 55px 0;
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 35px
+    }
+
+    .footer-logo {
+      font-size: 25px;
+      font-weight: 900
+    }
+
+    .footer-main h4 {
+      margin-bottom: 15px;
+      font-size: 14px
+    }
+
+    .footer-main a,
+    .footer-main p {
+      display: block;
+      color: #aaa;
+      font-size: 13px;
+      margin: 8px 0
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #292929;
+      padding: 20px 0;
+      color: #777;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between
+    }
+
+    /* DRAWERS / MODALS */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .48);
+      z-index: 80;
+      display: none
+    }
+
+    .overlay.show {
+      display: block
+    }
+
+    .drawer {
+      position: fixed;
+      z-index: 90;
+      right: -500px;
+      top: 0;
+      height: 100vh;
+      width: min(500px, 100%);
+      background: #fff;
+      transition: .3s;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, .15);
+      display: flex;
+      flex-direction: column
+    }
+
+    .drawer.show {
+      right: 0
+    }
+
+    .drawer-head {
+      padding: 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .close {
+      border: 0;
+      background: #f2f2f2;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow: auto;
+      padding: 20px
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 12px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .cart-item img {
+      width: 90px;
+      height: 95px;
+      border-radius: 9px
+    }
+
+    .cart-item h4 {
+      font-size: 14px
+    }
+
+    .cart-item p {
+      font-size: 12px;
+      color: #777;
+      margin: 4px 0
+    }
+
+    .qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .qty button {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 5px
+    }
+
+    .remove {
+      border: 0;
+      background: none;
+      color: #777;
+      font-size: 11px;
+      margin-top: 7px
+    }
+
+    .cart-foot {
+      border-top: 1px solid var(--line);
+      padding: 20px
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px
+    }
+
+    .full {
+      width: 100%
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -45%);
+      opacity: 0;
+      pointer-events: none;
+      width: min(900px, calc(100% - 30px));
+      max-height: 90vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .3);
+      transition: .25s
+    }
+
+    .modal.show {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: auto
+    }
+
+    .modal-head {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 2
+    }
+
+    .modal-body {
+      padding: 25px
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px
+    }
+
+    .modal-grid img {
+      height: 480px;
+      border-radius: 15px
+    }
+
+    .form {
+      display: grid;
+      gap: 14px
+    }
+
+    .form label {
+      font-size: 12px;
+      font-weight: 800
+    }
+
+    .input {
+      width: 100%;
+      border: 1px solid #ddd;
+      padding: 13px 14px;
+      border-radius: 10px;
+      outline: none
+    }
+
+    .input:focus {
+      border-color: #000
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px
+    }
+
+    .tab {
+      border: 0;
+      background: none;
+      padding: 13px 18px;
+      font-weight: 800;
+      border-bottom: 2px solid transparent
+    }
+
+    .tab.active {
+      border-color: #000
+    }
+
+    .pay-box {
+      border: 1px solid var(--line);
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 10px
+    }
+
+    .pay-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      padding: 13px;
+      border-radius: 10px;
+      margin-bottom: 8px
+    }
+
+    .pay-option input {
+      accent-color: #000
+    }
+
+    .installments {
+      display: none;
+      margin-top: 12px
+    }
+
+    .installments.show {
+      display: block
+    }
+
+    .notice {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12px;
+      color: #555
+    }
+
+    .coupon-row {
+      display: flex;
+      gap: 8px
+    }
+
+    .coupon-row .input {
+      flex: 1
+    }
+
+    .success {
+      text-align: center;
+      padding: 30px
+    }
+
+    .success-icon {
+      font-size: 55px;
+      margin-bottom: 10px
+    }
+
+    .success h2 {
+      margin-bottom: 8px
+    }
+
+    /* QUICK VIEW */
+    .quick-info h2 {
+      font-size: 30px;
+      margin-bottom: 7px
+    }
+
+    .quick-info .big-price {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 15px 0
+    }
+
+    .sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 20px
+    }
+
+    .size {
+      width: 48px;
+      height: 42px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 7px
+    }
+
+    .size.selected,
+    .size:hover {
+      border-color: #000;
+      background: #000;
+      color: #fff
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      z-index: 200;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 30px);
+      background: #111;
+      color: #fff;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1050px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media(max-width:800px) {
+      .navlinks {
+        position: fixed;
+        left: -100%;
+        top: 74px;
+        width: 100%;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, .08);
+        transition: .25s
+      }
+
+      .navlinks.open {
+        left: 0
+      }
+
+      .menu-btn {
+        display: block
+      }
+
+      .hero,
+      .hero-content {
+        min-height: 520px
+      }
+
+      .promo {
+        grid-template-columns: 1fr
+      }
+
+      .promo img {
+        height: 300px
+      }
+
+      .benefits {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .benefit:nth-child(2) {
+        border-right: 0
+      }
+
+      .benefit:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line)
+      }
+
+      .modal-grid {
+        grid-template-columns: 1fr
+      }
+
+      .modal-grid img {
+        height: 350px
+      }
+    }
+
+    @media(max-width:600px) {
+      .container {
+        width: min(100% - 24px, var(--max))
+      }
+
+      .nav {
+        height: 64px
+      }
+
+      .navlinks {
+        top: 64px
+      }
+
+      .hero h1 {
+        letter-spacing: -3px
+      }
+
+      .hero p {
+        font-size: 15px
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px
+      }
+
+      .product-image {
+        height: 250px
+      }
+
+      .categories {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px
+      }
+
+      .cat {
+        height: 260px
+      }
+
+      .cat-content {
+        left: 15px;
+        bottom: 15px
+      }
+
+      .cat-content h3 {
+        font-size: 20px
+      }
+
+      .section {
+        padding: 50px 0
+      }
+
+      .section-title {
+        font-size: 28px
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .footer-brand {
+        grid-column: 1/-1
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px
+      }
+
+      .promo-copy {
+        padding: 35px 25px
+      }
+
+      .promo h2 {
+        font-size: 35px
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* PREMIUM V2 */
+    .header-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: min(280px, 26vw);
+      background: #f5f5f5;
+      border-radius: 999px;
+      padding: 0 14px
+    }
+
+    .header-search input {
+      border: 0;
+      background: transparent;
+      outline: 0;
+      width: 100%;
+      padding: 11px 0;
+      font-size: 13px
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 22px;
+      font-size: 11px;
+      color: #eee
+    }
+
+    .product {
+      transition: transform .2s
+    }
+
+    .product:hover {
+      transform: translateY(-3px)
+    }
+
+    .product-category {
+      text-transform: uppercase;
+      letter-spacing: .3px
+    }
+
+    .shipping-mini {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 7px;
+      margin-top: 12px
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #666;
+      margin: 7px 0
+    }
+
+    .summary-line span:last-child {
+      color: #111;
+      font-weight: 700
+    }
+
+    .checkout-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      margin-bottom: 20px
+    }
+
+    .checkout-steps span {
+      padding: 10px;
+      background: #f3f3f3;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #888;
+      border-radius: 7px
+    }
+
+    .checkout-steps span.active {
+      background: #111;
+      color: #fff
+    }
+
+    .empty-wishlist {
+      text-align: center;
+      padding: 60px 20px;
+      color: #777;
+      grid-column: 1/-1
+    }
+
+    @media(max-width:900px) {
+      .header-search {
+        display: none
+      }
+    }
+
+    @media(max-width:600px) {
+      .hero-trust {
+        display: grid;
+        gap: 8px
+      }
+
+      .checkout-steps span {
+        font-size: 9px
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="topbar">FRETE GRÁTIS ACIMA DE R$ 399 • CUPOM BEMVINDO10 = 10% OFF</div>
+
+  <header>
+    <div class="container nav">
+      <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
+      <a class="logo" href="#inicio">VANTA<span>.</span></a>
+      <nav class="navlinks" id="navLinks">
+        <a href="#novidades" onclick="closeMenu()">Novidades</a>
+        <a href="#masculino" onclick="closeMenu()">Masculino</a>
+        <a href="#feminino" onclick="closeMenu()">Feminino</a>
+        <a href="#esportivo" onclick="closeMenu()">Esportivo</a>
+        <a href="#casual" onclick="closeMenu()">Casual</a>
+        <a href="#ofertas" onclick="closeMenu()">Ofertas</a>
+      </nav>
+      <div class="header-search"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar produtos..."
+          oninput="searchProducts(this.value)" aria-label="Buscar produtos"></div>
+      <div class="actions">
+        <button class="icon-btn" title="Conta" onclick="openAccount()">♙</button>
+        <button class="icon-btn" title="Favoritos" onclick="showWishlist()">♡</button>
+        <button class="icon-btn" title="Sacola" onclick="openCart()">🛒<span class="cart-count"
+            id="cartCount">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
     <section class="hero">
-        <div class="hero-box">
-            <small>Deep Learning • Automação • Próxima Era</small>
-            <h1>Inteligência<br><span class="txt-type" data-words='["Artificial", "Generativa", "Preditiva"]'></span></h1>
-            <p>A tecnologia que deixou de pertencer ao futuro para redefinir as regras e estruturas da sociedade contemporânea.</p>
-            <div class="buttons">
-                <a href="#sobre" class="btn primary">Iniciar Exploração</a>
-                <a href="#simulador" class="btn secondary">Testar Prompt</a>
-            </div>
+      <div class="hero-bg"></div>
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <div class="kicker">VANTA PERFORMANCE / 2026</div>
+          <h1>MOVE<br>WITHOUT<br>LIMITS.</h1>
+          <p>Performance, estilo e conforto para todos os seus movimentos. Descubra nossa nova coleção esportiva e
+            casual.</p>
+          <a class="btn btn-white" href="#novidades">Comprar coleção</a>
+          <a class="btn btn-dark" href="#ofertas">Ver ofertas</a>
+          <div class="hero-trust"><span>✓ Compra 100% fictícia</span><span>✓ Até 10x sem juros</span><span>✓ Frete
+              grátis*</span></div>
         </div>
+      </div>
     </section>
-    <section id="sobre" class="reveal">
-        <p class="section-tag">// 01 . INTRODUÇÃO</p>
-        <h2>O Que é Inteligência Artificial?</h2>
-        <p class="lead">A Inteligência Artificial (IA) é um ecossistema da computação dedicado a criar algoritmos capazes de processar dados complexos, aprender comportamentos e automatizar decisões.</p>
-        
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3>Auto-Aprendizado</h3>
-                <p>Modelos matemáticos refinados por meio de loops contínuos de ingestão de dados e refinamento.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🧠</div>
-                <h3>Hiper-Velocidade</h3>
-                <p>Análise preditiva de petabytes em frações de segundos, viabilizando operações críticas.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <h3>Ubiquidade Coletiva</h3>
-                <p>Integrada diretamente à infraestrutura global: logística, saúde, finanças e tráfego autônomo.</p>
-            </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Explore por categoria</h2>
+            <p class="section-sub">Encontre o seu estilo.</p>
+          </div>
         </div>
-    </section>
-    <section id="simulador" class="reveal">
-        <p class="section-tag">// 02 . INTERATIVIDADE</p>
-        <h2 style="text-align: center;">Laboratório de Inferência Neural</h2>
-        <p class="lead" style="text-align: center; margin: 0 auto 40px auto;">Simule o envio de um comando para o núcleo da nossa inteligência artificial local.</p>
-        
-        <div class="simulator-box">
-            <div class="sim-input-group">
-                <input type="text" id="prompt-in" class="sim-input" placeholder="Ex: Crie um plano para automação de processos..." aria-label="Digite seu comando para a IA">
-                <button id="prompt-btn" class="sim-btn">Executar</button>
+        <div class="categories">
+          <a class="cat" href="#esportivo" onclick="setFilter('esportivo')">
+            <img src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=900&q=80"
+              alt="Treino">
+            <div class="cat-content">
+              <h3>Treino</h3>
+              <p>Performance para todos os dias</p>
             </div>
-            <div id="prompt-out" class="sim-output">Aguardando comando na fila de processamento...</div>
+          </a>
+          <a class="cat" href="#casual" onclick="setFilter('casual')">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+              alt="Casual">
+            <div class="cat-content">
+              <h3>Casual</h3>
+              <p>Estilo que acompanha você</p>
+            </div>
+          </a>
+          <a class="cat" href="#masculino" onclick="setFilter('masculino')">
+            <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=900&q=80"
+              alt="Masculino">
+            <div class="cat-content">
+              <h3>Masculino</h3>
+              <p>Essenciais e performance</p>
+            </div>
+          </a>
+          <a class="cat" href="#feminino" onclick="setFilter('feminino')">
+            <img src="https://images.unsplash.com/photo-1506629905607-d9c297d8d8d5?auto=format&fit=crop&w=900&q=80"
+              alt="Feminino">
+            <div class="cat-content">
+              <h3>Feminino</h3>
+              <p>Movimento e personalidade</p>
+            </div>
+          </a>
         </div>
+      </div>
     </section>
-    
-    <section id="funciona" class="reveal">
-        <p class="section-tag">// 03 . ESTRUTURA</p>
-        <h2>A Arquitetura por Trás da Tecnologia</h2>
-        <p class="lead">Sistemas baseados em redes neurais de múltiplas camadas ocultas computando padrões estatísticos complexos.</p>
-        
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon">📊</div>
-                <h3>Machine Learning</h3>
-                <p>Mecanismos algorítmicos projetados para evolução autônoma sem programação explícita.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🔁</div>
-                <h3>Deep Learning</h3>
-                <p>Abstrações multicamadas que espelham conexões sinápticas para inferências avançadas.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">💬</div>
-                <h3>Modelos Transformers</h3>
-                <p>Redes neurais capazes de mapear e gerar textos e interações contextuais complexas.</p>
-            </div>
+
+    <section class="section" id="novidades">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Produtos em destaque</h2>
+            <p class="section-sub">Novos favoritos, feitos para você.</p>
+          </div>
+          <a class="view-all" href="#todos">Ver todos</a>
         </div>
-    </section>
-    <section id="beneficios" class="reveal">
-        <p class="section-tag">// 04 . APLICAÇÕES</p>
-        <h2>Setores em Transformação Crítica</h2>
-        <p class="lead">Aplicações práticas solucionando grandes complexidades da civilização contemporânea.</p>
-        
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon">🏥</div>
-                <h3>Medicina Preditiva</h3>
-                <p>Identificação precoce de anomalias celulares e desenvolvimento otimizado de novos fármacos.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌱</div>
-                <h3>Biosfera & Clima</h3>
-                <p>Monitoramento via satélite em tempo real de variações biológicas e focos inflamatórios ecológicos.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h3>Mídias Sintéticas</h3>
-                <p>Sistemas generativos expandindo os limites e ferramentas do design e da criatividade digital.</p>
-            </div>
+        <div class="shop-toolbar">
+          <div class="filters">
+            <button class="filter active" data-filter="todos" onclick="setFilter('todos')">Todos</button>
+            <button class="filter" data-filter="esportivo" onclick="setFilter('esportivo')">Esportivo</button>
+            <button class="filter" data-filter="casual" onclick="setFilter('casual')">Casual</button>
+            <button class="filter" data-filter="masculino" onclick="setFilter('masculino')">Masculino</button>
+            <button class="filter" data-filter="feminino" onclick="setFilter('feminino')">Feminino</button>
+            <button class="filter" data-filter="oferta" onclick="setFilter('oferta')">Ofertas</button>
+          </div>
+          <select class="sort" id="sort" onchange="sortProducts(this.value)">
+            <option value="default">Ordenar: destaque</option>
+            <option value="low">Menor preço</option>
+            <option value="high">Maior preço</option>
+            <option value="name">Nome</option>
+          </select>
         </div>
+        <div class="products" id="productGrid"></div>
+      </div>
     </section>
-    <section id="faq" class="reveal">
-        <p class="section-tag">// 05 . FAQ</p>
-        <h2>Perguntas Frequentes</h2>
-        <p class="lead">Esclarecimentos diretos sobre mitos, verdades da automação e privacidade.</p>
-        
-        <details>
-            <summary>A inteligência artificial irá substituir empregos?</summary>
-            <p style="color: var(--muted); margin-top:15px;">A IA redesenha o mercado. Funções repetitivas tendem à automação completa, abrindo espaço para novas engenharias de comando e supervisores de modelos de dados.</p>
-        </details>
-        <details>
-            <summary>Como funcionam os modelos generativos?</summary>
-            <p style="color: var(--muted); margin-top:15px;">Eles operam à base de predição estatística pura em larga escala, calculando qual o próximo caractere ou elemento visual mais provável de aparecer baseado no contexto de entrada.</p>
-        </details>
-        <details>
-            <summary>Como a segurança dos dados é treated nos sistemas de IA?</summary>
-            <p style="color: var(--muted); margin-top:15px;">Modelos de nível empresarial utilizam criptografia avançada de ponta a ponta e pipelines isolados (anonymized data rooms) para garantir conformidade com regras globais de privacidade, como a LGPD e o GDPR.</p>
-        </details>
-        <details>
-            <summary>Qual a diferença básica entre Inteligência Artificial e Automação simples?</summary>
-            <p style="color: var(--muted); margin-top:15px;">A automação simples segue regras fixas predefinidas (Se A acontecer, faça B). A IA analisa dados dinâmicos, identifica novos caminhos por conta própria e toma decisões preditivas sem precisar de regras manuais para cada cenário.</p>
-        </details>
-    </section>
-    <section class="divine-section reveal">
-        <p class="section-tag">// 06 . HORIZONTE DA CRIAÇÃO</p>
-        <h2>A Origem de Toda a Ordem</h2>
-        <p class="lead">Seja através das leis matemáticas da física, da engenharia biológica da natureza ou da fé, a busca humana pela inteligência reflete nosso vislumbre de um Arquiteto Supremo.</p>
-        <div class="divine-image-container">
-            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=800" alt="Nebulosa Cósmica simbolizando a Criação Divina e o Olho do Universo">
+
+    <section class="section" id="ofertas">
+      <div class="container">
+        <div class="promo">
+          <div class="promo-copy">
+            <div class="kicker">VANTA SALE</div>
+            <h2>ATÉ 40% OFF<br>EM SELECIONADOS.</h2>
+            <p>Renove seu guarda-roupa com peças esportivas e casuais. Use o cupom <b>VANTA20</b> e ganhe 20% OFF em
+              compras elegíveis.</p>
+            <button class="btn btn-dark" onclick="copyCoupon('VANTA20')">Copiar VANTA20</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=85"
+            alt="Tênis esportivo">
         </div>
+      </div>
     </section>
-    <button id="topBtn" title="Voltar ao topo">↑</button>
-    
-    <footer>
-        <h3>IA // EVOLUTION</h3>
-        <p>Decodificando as novas fronteiras da automação digital e computação neural.</p>
-        <div class="social">
-            <span>🤖 Core Neural</span>
-            <span>🚀 Tech-Shift</span>
-            <span>💡 Deep Systems</span>
+
+    <section class="section" id="todos">
+      <div class="container">
+        <div class="benefits">
+          <div class="benefit"><strong>🚚 Frete grátis</strong>
+            <p>Em pedidos acima de R$ 399.</p>
+          </div>
+          <div class="benefit"><strong>↩ Troca fácil</strong>
+            <p>Troque produtos elegíveis em até 30 dias.</p>
+          </div>
+          <div class="benefit"><strong>🔒 Compra simulada</strong>
+            <p>Nenhum pagamento real é realizado.</p>
+          </div>
+          <div class="benefit"><strong>💳 Até 10x</strong>
+            <p>Simulação de parcelamento sem juros.</p>
+          </div>
         </div>
-        <p style="margin-top:40px; font-size:0.85rem;">© 2026 - Futuro Exponencial Integrado.</p>
-    </footer>
-    <script>
-        /* 1. SISTEMA DE PARTÍCULAS EM CANVAS */
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+      </div>
+    </section>
+  </main>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+  <footer>
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo">VANTA.</div>
+        <p>Performance e lifestyle para todos os movimentos.</p>
+      </div>
+      <div>
+        <h4>Produtos</h4><a href="#novidades">Novidades</a><a href="#esportivo">Esportivo</a><a
+          href="#casual">Casual</a><a href="#ofertas">Ofertas</a>
+      </div>
+      <div>
+        <h4>Ajuda</h4><a href="#" onclick="fakeInfo('Central de ajuda')">Central de ajuda</a><a href="#"
+          onclick="fakeInfo('Trocas e devoluções')">Trocas e devoluções</a><a href="#"
+          onclick="fakeInfo('Entrega')">Entrega</a>
+      </div>
+      <div>
+        <h4>Conta</h4><a href="#" onclick="openAccount()">Entrar</a><a href="#" onclick="openAccount('register')">Criar
+          conta</a><a href="#" onclick="openCart()">Sacola</a>
+      </div>
+      <div>
+        <h4>Social</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 VANTA Sports — projeto fictício.</span><span>HTML • CSS •
+        JavaScript</span></div>
+  </footer>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = Math.random() * 0.2 - 0.1;
-                this.speedY = Math.random() * -0.3 - 0.1;
-                /* Atualizado: Cores das partículas alteradas para Rosa e Roxo no Canvas */
-                this.color = Math.random() > 0.5 ? 'rgba(255, 0, 127, 0.2)' : 'rgba(158, 0, 255, 0.2)';
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.y < 0) {
-                    this.y = canvas.height;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
+  <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle());
-            }
-        }
-        initParticles();
+  <!-- CART -->
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer-head">
+      <h2>Sua sacola</h2><button class="close" onclick="closeCart()">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="coupon-row"><input class="input" id="couponInput" placeholder="Cupom de desconto"><button
+          class="btn btn-dark" onclick="applyCoupon()">Aplicar</button></div>
+      <div id="couponMessage" style="font-size:12px;margin:8px 0;color:#777"></div>
+      <div class="shipping-mini"><input class="input" id="shippingCep" inputmode="numeric"
+          placeholder="CEP para simular frete"><button class="small-btn" onclick="calculateShipping()">Calcular</button>
+      </div>
+      <div id="shippingMessage" style="font-size:12px;color:#777;margin:7px 0"></div>
+      <div class="summary-line"><span>Subtotal</span><span id="cartSubtotal">R$ 0,00</span></div>
+      <div class="summary-line"><span>Desconto</span><span id="cartDiscount">R$ 0,00</span></div>
+      <div class="summary-line"><span>Frete</span><span id="cartShipping">Grátis</span></div>
+      <div class="total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
+      <button class="btn btn-dark full" onclick="openCheckout()">Finalizar compra fictícia</button>
+      <p style="font-size:10px;color:#888;text-align:center;margin-top:10px">Nenhuma cobrança real será realizada.</p>
+    </div>
+  </aside>
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+  <!-- ACCOUNT -->
+  <div class="modal" id="accountModal">
+    <div class="modal-head">
+      <h2>Minha conta</h2><button class="close" onclick="closeAll()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="tabs"><button class="tab active" id="loginTab" onclick="switchAccount('login')">Entrar</button><button
+          class="tab" id="registerTab" onclick="switchAccount('register')">Criar conta</button></div>
+      <form class="form" id="accountForm" onsubmit="fakeAccount(event)">
+        <label>Nome completo</label><input class="input" id="accountName" placeholder="Seu nome">
+        <label>E-mail</label><input class="input" type="email" required placeholder="voce@email.com">
+        <label>Senha</label><input class="input" type="password" required placeholder="••••••••">
+        <div id="birthField" style="display:none"><label>Data de nascimento</label><input class="input" type="date">
+        </div>
+        <button class="btn btn-dark" id="accountSubmit">Entrar</button>
+        <div class="notice">Conta apenas para demonstração. Os dados não são enviados para um servidor.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- QUICK VIEW -->
+  <div class="modal" id="quickModal">
+    <div class="modal-head">
+      <h2>Detalhes do produto</h2><button class="close" onclick="closeAll()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid">
+        <img id="quickImage" src="" alt="">
+        <div class="quick-info">
+          <div class="product-category" id="quickCategory"></div>
+          <h2 id="quickName"></h2>
+          <div class="big-price" id="quickPrice"></div>
+          <p id="quickDescription" style="color:#666;font-size:14px"></p>
+          <br><b>Tamanho</b>
+          <div class="sizes" id="quickSizes"></div>
+          <button class="btn btn-dark full" onclick="addQuickToCart()">Adicionar à sacola</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WISHLIST -->
+  <div class="modal" id="wishlistModal">
+    <div class="modal-head">
+      <h2>Meus favoritos</h2><button class="close" onclick="closeAll()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="products" id="wishlistGrid"></div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-head">
+      <h2>Finalizar compra</h2><button class="close" onclick="closeAll()">×</button>
+    </div>
+    <div class="modal-body" id="checkoutBody">
+      <div class="checkout-steps"><span class="active">1. Dados</span><span>2. Pagamento</span><span>3.
+          Confirmação</span></div>
+      <div class="notice" style="margin-bottom:18px"><b>Modo demonstração:</b> este checkout é fictício. Não use dados
+        bancários reais.</div>
+      <form class="form" onsubmit="finishPurchase(event)">
+        <h3>1. Seus dados</h3>
+        <div class="form-row"><input class="input" required placeholder="Nome completo"><input class="input" required
+            placeholder="E-mail"></div>
+        <div class="form-row"><input class="input" required placeholder="CEP"><input class="input" required
+            placeholder="Cidade / Estado"></div>
+        <input class="input" required placeholder="Endereço e número">
+        <h3 style="margin-top:10px">2. Pagamento fictício</h3>
+        <label class="pay-option"><input type="radio" name="payment" value="pix" checked onchange="paymentChanged()">
+          PIX — simulação</label>
+        <label class="pay-option"><input type="radio" name="payment" value="card" onchange="paymentChanged()"> Cartão de
+          crédito — simulação</label>
+        <label class="pay-option"><input type="radio" name="payment" value="debit" onchange="paymentChanged()"> Cartão
+          de débito — simulação</label>
+        <label class="pay-option"><input type="radio" name="payment" value="boleto" onchange="paymentChanged()"> Boleto
+          — simulação</label>
+        <div class="pay-box" id="cardFields" style="display:none">
+          <div class="form"><input class="input" placeholder="Número do cartão fictício">
+            <div class="form-row"><input class="input" placeholder="Validade"><input class="input" placeholder="CVV">
+            </div><input class="input" placeholder="Nome no cartão">
+          </div>
+          <div class="installments" id="installments"><label>Parcelamento</label><select class="input">
+              <option>1x sem juros</option>
+              <option>2x sem juros</option>
+              <option>3x sem juros</option>
+              <option>4x sem juros</option>
+              <option>5x sem juros</option>
+              <option>6x sem juros</option>
+              <option>8x sem juros</option>
+              <option>10x sem juros</option>
+            </select></div>
+        </div>
+        <div class="pay-box" id="pixInfo">Após confirmar, será exibido um PIX fictício para demonstração.</div>
+        <div style="display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding-top:10px">
+          <span>Total</span><span id="checkoutTotal">R$ 0,00</span></div>
+        <button class="btn btn-dark full" style="margin-top:12px">Confirmar pedido fictício</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Vanta Air Flow", category: "esportivo", gender: "unissex", price: 349.90, old: 399.90, badge: "NOVO", color: "Branco / Preto", img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Tênis leve para treino e rotina, com visual esportivo e amortecimento confortável." },
+      { id: 2, name: "Vanta Runner Pro", category: "esportivo", gender: "masculino", price: 429.90, old: 499.90, badge: "-14%", color: "Cinza / Azul", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=800&q=80", desc: "Tênis de corrida fictício com construção leve e sola de alta aderência." },
+      { id: 3, name: "Vanta Court X", category: "esportivo", gender: "unissex", price: 389.90, old: 449.90, badge: "DESTAQUE", color: "Branco / Vermelho", img: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80", desc: "Modelo inspirado em quadras, criado para conforto e estabilidade." },
+      { id: 4, name: "Vanta Street One", category: "casual", gender: "masculino", price: 299.90, old: null, badge: "", color: "Preto / Branco", img: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80", desc: "Tênis casual minimalista para combinar com diferentes looks." },
+      { id: 5, name: "Vanta Essential Tee", category: "casual", gender: "masculino", price: 119.90, old: 149.90, badge: "-20%", color: "Preto", img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80", desc: "Camiseta essencial de caimento confortável para o dia a dia." },
+      { id: 6, name: "Vanta Motion Top", category: "esportivo", gender: "feminino", price: 159.90, old: 189.90, badge: "NOVO", color: "Preto", img: "https://images.unsplash.com/photo-1506629905607-d9c297d8d8d5?auto=format&fit=crop&w=800&q=80", desc: "Top esportivo fictício com visual clean para treinos e atividades." },
+      { id: 7, name: "Vanta Flex Legging", category: "esportivo", gender: "feminino", price: 219.90, old: null, badge: "", color: "Preto", img: "https://images.unsplash.com/photo-1506629905607-d9c297d8d8d5?auto=format&fit=crop&w=800&q=80", desc: "Legging esportiva de visual moderno para acompanhar seus movimentos." },
+      { id: 8, name: "Vanta Urban Hoodie", category: "casual", gender: "unissex", price: 249.90, old: 299.90, badge: "-17%", color: "Cinza", img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80", desc: "Moletom urbano confortável para dias frios e looks casuais." },
+      { id: 9, name: "Vanta Daily Pants", category: "casual", gender: "feminino", price: 189.90, old: null, badge: "", color: "Bege", img: "https://images.unsplash.com/photo-1506629905607-d9c297d8d8d5?auto=format&fit=crop&w=800&q=80", desc: "Calça casual de corte confortável para rotina e lazer." },
+      { id: 10, name: "Vanta Futsal Grip", category: "esportivo", gender: "masculino", price: 279.90, old: 329.90, badge: "-15%", color: "Preto / Verde", img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Chuteira fictícia para futsal com perfil baixo e boa sensação de contato." },
+      { id: 11, name: "Vanta Studio Shorts", category: "esportivo", gender: "feminino", price: 139.90, old: null, badge: "", color: "Azul", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80", desc: "Short esportivo leve para treinos e atividades ao ar livre." },
+      { id: 12, name: "Vanta Classic Cap", category: "casual", gender: "unissex", price: 89.90, old: 109.90, badge: "", color: "Preto", img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=80", desc: "Boné casual clássico para completar seu visual." }
+    ];
 
 
-        /* 2. EFEITO TYPEWRITER */
-        class TypeWriter {
-            constructor(txtElement, words, wait = 3000) {
-                this.txtElement = txtElement;
-                this.words = words;
-                this.txt = '';
-                this.wordIndex = 0;
-                this.wait = parseInt(wait, 10);
-                this.type();
-                this.isDeleting = false;
-            }
-            type() {
-                const current = this.wordIndex % this.words.length;
-                const fullTxt = this.words[current];
-
-                if(this.isDeleting) {
-                    this.txt = fullTxt.substring(0, this.txt.length - 1);
-                } else {
-                    this.txt = fullTxt.substring(0, this.txt.length + 1);
-                }
-
-                this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-                let typeSpeed = 100;
-
-                if(this.isDeleting) { typeSpeed /= 2; }
-
-                if(!this.isDeleting && this.txt === fullTxt) {
-                    typeSpeed = this.wait;
-                    this.isDeleting = true;
-                } else if(this.isDeleting && this.txt === '') {
-                    this.isDeleting = false;
-                    this.wordIndex++;
-                    typeSpeed = 400;
-                }
-
-                setTimeout(() => this.type(), typeSpeed);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const txtElement = document.querySelector('.txt-type');
-            const words = JSON.parse(txtElement.getAttribute('data-words'));
-            new TypeWriter(txtElement, words, 2500);
-        });
-
-
-        /* 3. SIMULADOR INTERATIVO DE PROMPT */
-        const promptIn = document.getElementById('prompt-in');
-        const promptBtn = document.getElementById('prompt-btn');
-        const promptOut = document.getElementById('prompt-out');
-
-        promptBtn.addEventListener('click', () => {
-            const text = promptIn.value.trim();
-            if(!text) {
-                promptOut.innerText = "Por favor, insira um comando válido na linha de entrada.";
-                return;
-            }
-            promptOut.innerHTML = "<span style='color: var(--primary);'>[Processando]</span>";
-        });
-    </script>
+    let cart = JSON.parse(localStorage.getItem("vantaCart") || "[]");
+    let wishlist = JSON.parse(localStorage.getItem("vantaWishlist") || "[]");
+    let activeFilter = "todos", currentProduct = null, coupon = null, shipping = 0;
+    const money = n => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
+    function save() { localStorage.setItem("vantaCart", JSON.stringify(cart)); renderCart() }
+    function saveWishlist() { localStorage.setItem("vantaWishlist", JSON.stringify(wishlist)) }
+    function filteredProducts() {
+      let list = [...products];
+      if (activeFilter === "masculino") list = products.filter(p => p.gender === "masculino" || p.gender === "unissex");
+      else if (activeFilter === "feminino") list = products.filter(p => p.gender === "feminino" || p.gender === "unissex");
+      else if (activeFilter === "oferta") list = products.filter(p => p.old);
+      else if (activeFilter !== "todos") list = products.filter(p => p.category === activeFilter);
+      return list;
+    }
+    function renderProducts(list = filteredProducts()) {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = list.length ? list.map(p => `<article class="product"><div class="product-image">${p.badge ? `<span class="badge">${p.badge}</span>` : ""}<button class="wish ${wishlist.includes(p.id) ? "active" : ""}" onclick="toggleWish(${p.id},this)">♡</button><img src="${p.img}" alt="${p.name}" loading="lazy"></div><div class="product-info"><div class="product-category">${capitalize(p.category)} • ${capitalize(p.gender)}</div><div class="product-name">${p.name}</div><div class="product-color">${p.color}</div><div class="price">${p.old ? `<span class="old-price">${money(p.old)}</span>` : ""}${money(p.price)}</div><div class="product-actions"><button class="small-btn" onclick="quickView(${p.id})">Detalhes</button><button class="small-btn primary" onclick="addToCart(${p.id})">Adicionar</button></div></div></article>`).join("") : '<div class="empty-wishlist">Nenhum produto encontrado.</div>';
+    }
+    function setFilter(f) { activeFilter = f; document.querySelectorAll(".filter").forEach(b => b.classList.toggle("active", b.dataset.filter === f)); renderProducts(); document.getElementById("novidades").scrollIntoView({ behavior: "smooth" }) }
+    function sortProducts(v) { let list = filteredProducts(); if (v === "low") list.sort((a, b) => a.price - b.price); if (v === "high") list.sort((a, b) => b.price - a.price); if (v === "name") list.sort((a, b) => a.name.localeCompare(b.name)); renderProducts(list) }
+    function searchProducts(term) { let q = term.trim().toLowerCase(); renderProducts(q ? products.filter(p => [p.name, p.category, p.gender, p.color, p.desc].join(" ").toLowerCase().includes(q)) : filteredProducts()) }
+    function addToCart(id) { let p = products.find(x => x.id === id), item = cart.find(x => x.id === id); if (item) item.qty++; else cart.push({ id, qty: 1 }); save(); toast(p.name + " foi adicionado à sacola.") }
+    function removeFromCart(id) { cart = cart.filter(x => x.id !== id); save() }
+    function changeQty(id, d) { let i = cart.find(x => x.id === id); if (!i) return; i.qty += d; if (i.qty <= 0) cart = cart.filter(x => x.id !== id); save() }
+    function subtotal() { return cart.reduce((s, i) => s + products.find(p => p.id === i.id).price * i.qty, 0) }
+    function discountValue() { if (!coupon) return 0; let s = subtotal(); return coupon.type === "percent" ? s * coupon.value / 100 : coupon.type === "fixed" ? Math.min(coupon.value, s) : 0 }
+    function total() { return Math.max(0, subtotal() - discountValue() + shipping) }
+    function calculateShipping() { let cep = (document.getElementById("shippingCep").value || "").replace(/\D/g, ""), m = document.getElementById("shippingMessage"); if (cep.length !== 8) { m.textContent = "Digite um CEP com 8 números."; m.style.color = "#d92727"; return } shipping = subtotal() >= 399 ? 0 : 24.9; m.textContent = shipping ? "Frete simulado: R$ 24,90" : "Frete grátis para este pedido!"; m.style.color = shipping ? "#666" : "#198754"; renderCart() }
+    function renderCart() {
+      document.getElementById("cartCount").textContent = cart.reduce((s, i) => s + i.qty, 0);
+      let area = document.getElementById("cartItems");
+      area.innerHTML = cart.length ? cart.map(i => { let p = products.find(x => x.id === i.id); return `<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div><h4>${p.name}</h4><p>${money(p.price)} • ${p.color}</p><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${i.qty}</b><button onclick="changeQty(${p.id},1)">+</button></div><button class="remove" onclick="removeFromCart(${p.id})">Remover</button></div><b>${money(p.price * i.qty)}</b></div>` }).join("") : '<div style="text-align:center;padding:70px 15px;color:#777"><div style="font-size:45px">🛍</div><h3 style="color:#111;margin:10px">Sua sacola está vazia</h3><p>Adicione produtos para continuar.</p></div>';
+      document.getElementById("cartSubtotal").textContent = money(subtotal()); document.getElementById("cartDiscount").textContent = discountValue() ? "- " + money(discountValue()) : money(0); document.getElementById("cartShipping").textContent = shipping ? money(shipping) : "Grátis"; document.getElementById("cartTotal").textContent = money(total());
+    }
+    function openCart() { closeAll(); document.getElementById("overlay").classList.add("show"); document.getElementById("cartDrawer").classList.add("show") }
+    function quickView(id) { currentProduct = products.find(p => p.id === id); document.getElementById("quickImage").src = currentProduct.img; document.getElementById("quickName").textContent = currentProduct.name; document.getElementById("quickCategory").textContent = capitalize(currentProduct.category) + " • " + capitalize(currentProduct.gender); document.getElementById("quickPrice").textContent = money(currentProduct.price); document.getElementById("quickDescription").textContent = currentProduct.desc; document.getElementById("quickSizes").innerHTML = ["P", "M", "G", "GG", "38", "39", "40", "41", "42"].map(s => `<button class="size" onclick="selectSize(this)">${s}</button>`).join(""); closeAll(); document.getElementById("overlay").classList.add("show"); document.getElementById("quickModal").classList.add("show") }
+    function selectSize(e) { document.querySelectorAll(".size").forEach(x => x.classList.remove("selected")); e.classList.add("selected") }
+    function addQuickToCart() { if (currentProduct) addToCart(currentProduct.id); closeAll(); openCart() }
+    function toggleWish(id, btn) { let has = wishlist.includes(id); wishlist = has ? wishlist.filter(x => x !== id) : [...wishlist, id]; saveWishlist(); if (btn) { btn.classList.toggle("active", !has); btn.textContent = !has ? "♥" : "♡" } toast(has ? "Removido dos favoritos" : "Adicionado aos favoritos") }
+    function showWishlist() { let grid = document.getElementById("wishlistGrid"), list = products.filter(p => wishlist.includes(p.id)); grid.innerHTML = list.length ? list.map(p => `<article class="product"><div class="product-image"><button class="wish active" onclick="toggleWish(${p.id},this);showWishlist()">♥</button><img src="${p.img}" alt="${p.name}"></div><div class="product-info"><div class="product-category">${capitalize(p.category)}</div><div class="product-name">${p.name}</div><div class="price">${money(p.price)}</div><button class="small-btn primary" onclick="addToCart(${p.id})">Adicionar à sacola</button></div></article>`).join("") : '<div class="empty-wishlist"><h3>Nenhum favorito ainda</h3><p>Clique no coração de um produto para salvá-lo.</p></div>'; closeAll(); document.getElementById("overlay").classList.add("show"); document.getElementById("wishlistModal").classList.add("show") }
+    function applyCoupon() { let code = (document.getElementById("couponInput").value || "").trim().toUpperCase(), cs = { BEMVINDO10: { type: "percent", value: 10, label: "10% OFF" }, VANTA20: { type: "percent", value: 20, label: "20% OFF" }, PRIMEIRA15: { type: "percent", value: 15, label: "15% OFF" }, FRETEGRATIS: { type: "shipping", value: 0, label: "Frete grátis" }, ESTUDANTE10: { type: "percent", value: 10, label: "10% OFF" }, SPORT25: { type: "percent", value: 25, label: "25% OFF" }, VANTA50: { type: "fixed", value: 50, label: "R$ 50 OFF" } }, m = document.getElementById("couponMessage"); if (cs[code]) { coupon = { ...cs[code], code }; if (coupon.type === "shipping") shipping = 0; m.textContent = "Cupom " + code + " aplicado: " + coupon.label; m.style.color = "#198754"; toast("Cupom aplicado!") } else { coupon = null; m.textContent = "Cupom inválido. Tente BEMVINDO10, VANTA20 ou SPORT25."; m.style.color = "#d92727" } renderCart() }
+    function copyCoupon(c) { navigator.clipboard?.writeText(c); document.getElementById("couponInput").value = c; toast("Cupom " + c + " copiado!") }
+    function openAccount(mode = "login") { closeAll(); document.getElementById("overlay").classList.add("show"); document.getElementById("accountModal").classList.add("show"); switchAccount(mode) }
+    function switchAccount(mode) { let l = mode === "login"; document.getElementById("loginTab").classList.toggle("active", l); document.getElementById("registerTab").classList.toggle("active", !l); document.getElementById("accountName").style.display = l ? "none" : "block"; document.getElementById("birthField").style.display = l ? "none" : "block"; document.getElementById("accountSubmit").textContent = l ? "Entrar" : "Criar conta fictícia" }
+    function fakeAccount(e) { e.preventDefault(); toast("Conta de demonstração criada!"); closeAll() }
+    function openCheckout() { if (!cart.length) { toast("Adicione pelo menos um produto à sacola."); return } closeAll(); document.getElementById("overlay").classList.add("show"); document.getElementById("checkoutModal").classList.add("show"); document.getElementById("checkoutTotal").textContent = money(total()) }
+    function paymentChanged() { let v = document.querySelector('input[name="payment"]:checked').value; document.getElementById("cardFields").style.display = (v === "card" || v === "debit") ? "block" : "none"; document.getElementById("installments").classList.toggle("show", v === "card"); document.getElementById("pixInfo").style.display = v === "pix" ? "block" : "none" }
+    function finishPurchase(e) { e.preventDefault(); let n = "VNT-" + Math.floor(100000 + Math.random() * 900000); document.getElementById("checkoutBody").innerHTML = `<div class="success"><div class="success-icon">✓</div><h2>Pedido fictício confirmado!</h2><p>Pedido <b>${n}</b> registrado somente para demonstração.</p><p style="color:#777;margin:10px 0 25px">Valor simulado: <b>${money(total())}</b></p><div class="notice">Nenhum cartão, PIX ou dinheiro foi realmente processado.</div><button class="btn btn-dark" style="margin-top:20px" onclick="resetStore()">Voltar à loja</button></div>` }
+    function resetStore() { cart = []; coupon = null; shipping = 0; save(); location.reload() }
+    function toggleMenu() { document.getElementById("navLinks").classList.toggle("open") }
+    function closeMenu() { document.getElementById("navLinks").classList.remove("open") }
+    function closeAll() { document.getElementById("overlay").classList.remove("show"); document.querySelectorAll(".modal").forEach(x => x.classList.remove("show")); document.getElementById("cartDrawer").classList.remove("show") }
+    function toast(m) { let t = document.getElementById("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(window.tt); window.tt = setTimeout(() => t.classList.remove("show"), 2200) }
+    function fakeInfo(t) { event?.preventDefault(); toast(t + " — área demonstrativa.") }
+    function focusSearch() { document.getElementById("searchInput")?.focus() }
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll() });
+    renderProducts(); renderCart();
+  </script>
 </body>
-</html>
 
-```
+</html>
